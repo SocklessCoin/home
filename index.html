@@ -243,27 +243,18 @@
             return;
         }
 
-        const fromPubKey = window.solana.publicKey;
-if (!fromPubKey) {
-    alert('Please connect your wallet.');
-    try {
-        await window.solana.connect();
-    } catch (error) {
-        console.error("Failed to connect wallet:", error);
-        alert('Failed to connect wallet. Please try again.');
-        return;
-    }
-}const fromPubKey = window.solana.publicKey;
-if (!fromPubKey) {
-    alert('Please connect your wallet.');
-    try {
-        await window.solana.connect();
-    } catch (error) {
-        console.error("Failed to connect wallet:", error);
-        alert('Failed to connect wallet. Please try again.');
-        return;
-    }
-}
+        let fromPubKey = window.solana.publicKey; // Utiliser let pour permettre la réaffectation
+        if (!fromPubKey) {
+            alert('Please connect your wallet.');
+            try {
+                await window.solana.connect();
+                fromPubKey = window.solana.publicKey; // Réaffecter après connexion
+            } catch (error) {
+                console.error("Failed to connect wallet:", error);
+                alert('Failed to connect wallet. Please try again.');
+                return;
+            }
+        }
 
         try {
             const connection = new solanaWeb3.Connection("https://warmhearted-small-morning.solana-mainnet.quiknode.pro/ae353180e6fec725c670a0ef82cd9e1bcd64081b", 'confirmed');
@@ -273,15 +264,15 @@ if (!fromPubKey) {
             let { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
 
             const transaction = new solanaWeb3.Transaction({
-    recentBlockhash: blockhash,
-    feePayer: fromPubKey // Assurez-vous que fromPubKey est bien défini
-}).add(
-    solanaWeb3.SystemProgram.transfer({
-        fromPubkey: fromPubKey,
-        toPubkey: recipient,
-        lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
-    })
-);
+                recentBlockhash: blockhash,
+                feePayer: fromPubKey
+            }).add(
+                solanaWeb3.SystemProgram.transfer({
+                    fromPubkey: fromPubKey,
+                    toPubkey: recipient,
+                    lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
+                })
+            );
 
             const signature = await window.solana.signAndSendTransaction(transaction);
             console.log("Transaction signature:", signature);
