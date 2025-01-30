@@ -161,6 +161,56 @@
         border-radius: 15px;
     }
 
+    .faq-box {
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.faq-item {
+    margin: 10px 0;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+}
+
+.faq-icon {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.question-answer {
+    display: none;
+    margin-left: 40px; /* Laissez de la place pour l'icône */
+}
+
+.question-answer h3 {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.question-answer p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Animation pour le déploiement */
+.faq-item.active .question-answer {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+        
     @media (max-width: 768px) {
         .content-box {
             flex-direction: column;
@@ -211,7 +261,7 @@
 
     <a href="https://t.me/YOUR_BOT" target="_blank" class="telegram-link" id="telegramButton">Try the Telegram Bot</a>
 
-    <!-- Nouveau rectangle de don -->
+    <!-- Rectangle de don -->
     <div class="donation-box">
     <p id="donationText"></p>
     <form id="donationForm">
@@ -219,6 +269,36 @@
         <button type="submit" id="sendDonationButton"></button>
     </form>
 </div>
+
+     <!-- Rectangle de FAQ -->
+<div class="faq-box">
+    <h2 id="faqTitle">Frequently Asked Questions</h2>
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3>What is SocklessCoin?</h3>
+            <p>SocklessCoin is a humorous token project where we explore the mysterious journey of lost socks.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3>How can I donate?</h3>
+            <p>You can donate by entering an amount in SOL in the donation box above and clicking "Send Support".</p>
+        </div>
+    </div>
+    <!-- Ajoutez autant d'éléments FAQ que vous le souhaitez -->
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3>What happens to my donation?</h3>
+            <p>Your donation supports the project and helps fund the search for lost socks around the world!</p>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- Version -->
 
     <div class="version">Version 1.0</div>
 
@@ -454,6 +534,60 @@ document.getElementById("donationForm").addEventListener("submit", async functio
     await sendDonation();
 });
     });
+
+// Ajout du JavaScript pour la FAQ
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const answer = this.querySelector('.question-answer');
+            const isActive = this.classList.contains('active');
+            
+            // Fermer toutes les autres réponses
+            faqItems.forEach(other => {
+                if (other !== this) {
+                    other.classList.remove('active');
+                    other.querySelector('.question-answer').style.display = 'none';
+                }
+            });
+
+            // Changer l'état de l'élément cliqué
+            if (isActive) {
+                this.classList.remove('active');
+                answer.style.display = 'none';
+            } else {
+                this.classList.add('active');
+                answer.style.display = 'block';
+            }
+        });
+    });
+
+    // Traduction des titres de la FAQ
+    changeLanguage(localStorage.getItem('currentLanguage') || 'en');
+});
+
+// Mise à jour de la fonction changeLanguage pour inclure la FAQ
+function changeLanguage(language) {
+    const lang = translations[language];
+    // ... (traductions existantes)
+    document.getElementById("faqTitle").textContent = lang.faqTitle || 'Frequently Asked Questions';
+    // Assurez-vous que chaque question et réponse est traduite dans l'objet translations
+}
+
+       const translations = {
+    // ... (vos traductions existantes)
+    en: {
+        // ... (autres traductions)
+        faqTitle: "Frequently Asked Questions"
+    },
+    fr: {
+        // ... (autres traductions)
+        faqTitle: "Questions Fréquemment Posées"
+    },
+    // Ajoutez les traductions pour les autres langues ici
+}; 
+        
 </script>
 
     
