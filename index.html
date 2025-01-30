@@ -207,7 +207,8 @@
     <button id="sendDonationButton">Envoyer le soutien</button>
 </div>
 
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <button id="sendDonationButton" onclick="sendDonation(parseFloat(document.getElementById('donationAmount').value))">Envoyer le soutien</button>
+
 
 <script>
   // Attendre que la bibliothèque soit bien chargée
@@ -216,26 +217,36 @@
   });
 
   async function sendDonation(amount) {
-    try {
-      const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
-      const payer = solanaWeb3.Keypair.generate(); // Simulé, l'utilisateur doit signer avec son wallet
-      const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc");
-      
-      const transaction = new solanaWeb3.Transaction().add(
-        solanaWeb3.SystemProgram.transfer({
-          fromPubkey: payer.publicKey,
-          toPubkey: recipient,
-          lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
-        })
-      );
-
-      const signature = await solanaWeb3.sendAndConfirmTransaction(connection, transaction, [payer]);
-      alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
-    } catch (err) {
-      console.error('Erreur lors de l\'envoi de la donation : ', err);
-      alert('Une erreur est survenue. Veuillez réessayer.');
-    }
+  console.log("Montant de la donation :", amount);
+  
+  if (!amount || isNaN(amount) || amount <= 0) {
+    alert("Veuillez entrer un montant valide !");
+    return;
   }
+
+  try {
+    console.log("Initialisation de la connexion Solana...");
+    const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+    const payer = solanaWeb3.Keypair.generate(); 
+    const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc");
+
+    const transaction = new solanaWeb3.Transaction().add(
+      solanaWeb3.SystemProgram.transfer({
+        fromPubkey: payer.publicKey,
+        toPubkey: recipient,
+        lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
+      })
+    );
+
+    console.log("Envoi de la transaction...");
+    const signature = await solanaWeb3.sendAndConfirmTransaction(connection, transaction, [payer]);
+    alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
+  } catch (err) {
+    console.error('Erreur lors de l\'envoi de la donation : ', err);
+    alert('Une erreur est survenue. Veuillez réessayer.');
+  }
+}
+
 </script>
 
 
