@@ -315,31 +315,31 @@
         <img id="lightboxImage" src="" alt="Zoomed Image">
     </div>
     <!-- Scripts nécessaires pour Solana -->
-    <script type="module">
-        import { Buffer } from "https://cdn.skypack.dev/buffer";
-        window.Buffer = Buffer;
-    </script>
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+   <script type="module">
+    import { Buffer } from "https://cdn.skypack.dev/buffer";
+    window.Buffer = Buffer;
+</script>
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
 
-    <script>
-        // Système de traduction amélioré
-        const translations = {
-            en: {
-                title: "Welcome to SocklessCoin 🧦",
-                subtitle: "Where do lost socks go? We might have the answer...",
-                findButton: "Find a Sock",
-                telegramButton: "Try the Telegram Bot",
-                donationText: "Please support me so my wife stops leaving her socks everywhere.",
-                donationPlaceholder: "Enter amount in SOL",
-                sendDonation: "Send Support",
-                invalidAmount: "Please enter a valid amount!",
-                connectWallet: "Please connect your wallet.",
-                insufficientFunds: "Insufficient funds to complete the transaction.",
-                userRejected: "The transaction was canceled by the user.",
-                genericError: "An error occurred. Please try again.",
-                success: "Thank you for your support! Transaction successful with signature: ",
-                faqTitle: "Frequently Asked Questions",
-                additionalQuestions: "Additional Questions",
+<script>
+    // Système de traduction amélioré
+    const translations = {
+        en: {
+            title: "Welcome to SocklessCoin 🧦",
+            subtitle: "Where do lost socks go? We might have the answer...",
+            findButton: "Find a Sock",
+            telegramButton: "Try the Telegram Bot",
+            donationText: "Please support me so my wife stops leaving her socks everywhere.",
+            donationPlaceholder: "Enter amount in SOL",
+            sendDonation: "Send Support",
+            invalidAmount: "Please enter a valid amount!",
+            connectWallet: "Please connect your wallet.",
+            insufficientFunds: "Insufficient funds to complete the transaction.",
+            userRejected: "The transaction was canceled by the user.",
+            genericError: "An error occurred. Please try again.",
+            success: "Thank you for your support! Transaction successful with signature: ",
+            faqTitle: "Frequently Asked Questions",
+            additionalQuestions: "Additional Questions",
             question1: "Question 1: (Pre-launch) Why is there such a high percentage in holders?",
             answer1: "The high percentage you see among holders is because the majority of the supply is held by the team to be distributed gradually. Think of it like a sock drawer: at first, all the socks are in there, but the more you wear them, the more the drawer empties. Each purchase takes a few more tokens out of this reserve, putting them into your hands... or rather, into your wallet.",
             question2: "Question 2: It's a scam!",
@@ -352,23 +352,23 @@
             answer5: "Without a doubt, my wife. She has a knack for leaving them everywhere. They reappear in the most unexpected places: under the couch, behind the fridge, in the cutlery drawer... My robot vacuum has nightmares about it. It's a real treasure hunt every time she looks for a pair!",
             question6: "Question 6: What do you do besides all this?",
             answer6: "Lots of things! I'm a student in a Master's program in Public Health (I finish in September if you want to send congratulations). I'm also employed by a health professionals' association. I make videos on YouTube with crypto tutorials (search for 'Les Occaz à Séb'). I'm also on Twitch where I do some live streams, but it's not very popular."
-            },
-            fr: {
-                title: "Bienvenue sur SocklessCoin 🧦",
-                subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
-                findButton: "Trouver une chaussette",
-                telegramButton: "Essayer le bot Telegram",
-                donationText: "Soutenez-moi pour que ma femme arrête de laisser ses chaussettes partout.",
-                donationPlaceholder: "Montant en SOL",
-                sendDonation: "Envoyer le soutien",
-                invalidAmount: "Veuillez entrer un montant valide !",
-                connectWallet: "Veuillez connecter votre portefeuille.",
-                insufficientFunds: "Fonds insuffisants pour compléter la transaction.",
-                userRejected: "La transaction a été annulée par l'utilisateur.",
-                genericError: "Une erreur est survenue. Veuillez réessayer.",
-                success: "Merci pour votre soutien ! Transaction réussie avec signature : ",
-                faqTitle: "Questions Fréquemment Posées",
-                additionalQuestions: "Questions supplémentaires",
+        },
+        fr: {
+            title: "Bienvenue sur SocklessCoin 🧦",
+            subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
+            findButton: "Trouver une chaussette",
+            telegramButton: "Essayer le bot Telegram",
+            donationText: "Soutenez-moi pour que ma femme arrête de laisser ses chaussettes partout.",
+            donationPlaceholder: "Montant en SOL",
+            sendDonation: "Envoyer le soutien",
+            invalidAmount: "Veuillez entrer un montant valide !",
+            connectWallet: "Veuillez connecter votre portefeuille.",
+            insufficientFunds: "Fonds insuffisants pour compléter la transaction.",
+            userRejected: "La transaction a été annulée par l'utilisateur.",
+            genericError: "Une erreur est survenue. Veuillez réessayer.",
+            success: "Merci pour votre soutien ! Transaction réussie avec signature : ",
+            faqTitle: "Questions Fréquemment Posées",
+            additionalQuestions: "Questions supplémentaires",
             question1: "Question 1: (Étape prélancement) Pourquoi il y a un gros pourcentage dans les holders ?",
             answer1: "Le gros pourcentage que vous voyez dans les holders, c'est parce que la majorité de la supply est détenue par l'équipe pour être distribuée progressivement. Pensez-y comme à une réserve de chaussettes : au début, elles sont toutes dans le tiroir, mais plus vous les portez, plus le tiroir se vide. Chaque achat fait sortir un peu plus de tokens de cette réserve, les mettant entre vos mains... ou plutôt, dans votre wallet.",
             question2: "Question 2: C'est un scam !",
@@ -381,24 +381,23 @@
             answer5: "Sans aucun doute, ma femme. Elle a le don de les mettre partout. Elles réapparaissent dans les endroits les plus inattendus : sous le canapé, derrière le frigo, dans le tiroir à couverts... Mon robot aspirateur en fait des cauchemars. C'est une véritable chasse au trésor à chaque fois qu'elle cherche une paire !",
             question6: "Question 6 : Tu fais quoi à côté de tout ça ?",
             answer6: "Plein de choses ! Je suis étudiant dans un Master en Santé publique (je finis en septembre si vous voulez m'envoyer des félicitations). Je suis également salarié dans une association de professionnels de santé. Je fais des vidéos sur Youtube avec des tutos sur la crypto (cherchez 'Les Occaz à Séb'). Je suis également sur Twitch où je fais quelques lives mais c'est pas très populaire."
-                 },
-            // Ajoutez les traductions pour les autres langues similaires
-            zh: {
-                title: "欢迎来到 SocklessCoin 🧦",
-                subtitle: "丢失的袜子去了哪里？也许我们有答案...",
-                findButton: "找一只袜子",
-                telegramButton: "试用 Telegram 机器人",
-                donationText: "请支持我，让我的妻子不再到处丢袜子。",
-                donationPlaceholder: "输入 SOL 金额",
-                sendDonation: "发送支持",
-                invalidAmount: "请输入有效金额！",
-                connectWallet: "请连接你的钱包。",
-                insufficientFunds: "资金不足以完成交易。",
-                userRejected: "交易被用户取消。",
-                genericError: "发生错误。请重试。",
-                success: "感谢您的支持！交易成功，签名：",
-                faqTitle: "常见问题",
-                additionalQuestions: "附加问题",
+        },
+        zh: {
+            title: "欢迎来到 SocklessCoin 🧦",
+            subtitle: "丢失的袜子去了哪里？也许我们有答案...",
+            findButton: "找一只袜子",
+            telegramButton: "试用 Telegram 机器人",
+            donationText: "请支持我，让我的妻子不再到处丢袜子。",
+            donationPlaceholder: "输入 SOL 金额",
+            sendDonation: "发送支持",
+            invalidAmount: "请输入有效金额！",
+            connectWallet: "请连接你的钱包。",
+            insufficientFunds: "资金不足以完成交易。",
+            userRejected: "交易被用户取消。",
+            genericError: "发生错误。请重试。",
+            success: "感谢您的支持！交易成功，签名：",
+            faqTitle: "常见问题",
+            additionalQuestions: "附加问题",
             question1: "问题1：（预发布）为什么持有者中有这么高比例？",
             answer1: "您在持有者中看到的高比例是因为团队持有大部分供应量以逐步分发。想象一下这就像一个袜子抽屉：一开始所有的袜子都在里面，但你穿得越多，抽屉就越空。每次购买都会从这个储备中取出一些代币，放进你的手中……或者更准确地说，放进你的钱包。",
             question2: "问题2：这是一个骗局！",
@@ -412,22 +411,22 @@
             question6: "问题6：除了这些，你还做什么？",
             answer6: "很多事情！我在公共卫生硕士项目中学习（如果你们想送祝贺，我会在九月完成）。我还在一个健康专业人士协会工作。我在YouTube上制作有关加密货币的教程视频（搜索'Les Occaz à Séb'）。我也在Twitch上做一些直播，不过并不是很受欢迎。"
         },
-            ru: {
-                title: "Добро пожаловать в SocklessCoin 🧦",
-                subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
-                findButton: "Найти носок",
-                telegramButton: "Попробовать бота Telegram",
-                donationText: "Поддержите меня, чтобы моя жена перестала оставлять носки повсюду.",
-                donationPlaceholder: "Сумма в SOL",
-                sendDonation: "Отправить поддержку",
-                invalidAmount: "Пожалуйста, введите корректную сумму!",
-                connectWallet: "Пожалуйста, подключите свой кошелек.",
-                insufficientFunds: "Недостаточно средств для завершения транзакции.",
-                userRejected: "Транзакция отклонена пользователем.",
-                genericError: "Произошла ошибка. Пожалуйста, попробуйте снова.",
-                success: "Спасибо за вашу поддержку! Транзакция успешно завершена с подписью: ",
-                faqTitle: "Часто задаваемые вопросы",
-                additionalQuestions: "Дополнительные вопросы",
+        ru: {
+            title: "Добро пожаловать в SocklessCoin 🧦",
+            subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
+            findButton: "Найти носок",
+            telegramButton: "Попробовать бота Telegram",
+            donationText: "Поддержите меня, чтобы моя жена перестала оставлять носки повсюду.",
+            donationPlaceholder: "Сумма в SOL",
+            sendDonation: "Отправить поддержку",
+            invalidAmount: "Пожалуйста, введите корректную сумму!",
+            connectWallet: "Пожалуйста, подключите свой кошелек.",
+            insufficientFunds: "Недостаточно средств для завершения транзакции.",
+            userRejected: "Транзакция отклонена пользователем.",
+            genericError: "Произошла ошибка. Пожалуйста, попробуйте снова.",
+            success: "Спасибо за вашу поддержку! Транзакция успешно завершена с подписью: ",
+            faqTitle: "Часто задаваемые вопросы",
+            additionalQuestions: "Дополнительные вопросы",
             question1: "Вопрос 1: (Долистинг) Почему такой высокий процент у держателей?",
             answer1: "Большой процент, который вы видите у держателей, объясняется тем, что большая часть запасов удерживается командой для постепенного распределения. Думайте об этом как о ящике с носками: вначале все носки там, но чем больше вы их носите, тем больше ящик опустошается. Каждый новый покупаемый токен вытаскивает немного из этого резерва, помещая их в ваши руки... или скорее, в ваш кошелек.",
             question2: "Вопрос 2: Это мошенничество!",
@@ -435,28 +434,28 @@
             question3: "Вопрос 3: Вы собираетесь заработать кучу денег!",
             answer3: "Извините за разочарование, но я не на пути к тому, чтобы стать следующим магнатом носков. Платформы вроде Moonshot и Pump.fun контролируют смарт-контракт, и я не могу влиять на ограниченную в 1 миллиард токенов supply. Мой единственный потенциальный источник дохода? Ваши щедрые пожертвования SOL на этом сайте. Это как волонтерство, но с долей надежды и большим юмором.",
             question4: "Вопрос 4: Какие проекты планируются?",
-            answer4: "Моя мечта? Быть размещенным на CEX. Но помимо этого, я хочу развивать этот сайт, созданный моими собственными руками (без критики кода, OK [смех]). Почему бы не создать игру на Telegram? Да, это очень сложно. Но, эй, кто не любит хорошее испытание? У меня много планов впереди, если вы дадите мне шанс их осуществить.",
+            answer4: "Моя мечта? Быть размещенным на CEX. Но помимо этого, я хочу развивать этот сайт, созданный моими собственными руками (без критики кода, OK [смех]). Почему бы не создать игру на Telegram? Да, это очень сложно. Но, эй, кто не любит хорошее испытание? У меня много планов впереди, если вы
             question5: "Вопрос 5: Кто скрывает носки больше всех?",
             answer5: "Без сомнения, моя жена. У неё талант раскладывать их везде. Они появляются в самых неожиданных местах: под диваном, за холодильником, в ящике для столовых приборов... Мой робот-пылесос из-за этого видит кошмары. Это настоящая охота за сокровищами каждый раз, когда она ищет пару!",
             question6: "Вопрос 6: Чем вы занимаетесь помимо всего этого?",
             answer6: "Много чего! Я студент магистратуры по общественному здоровью (заканчиваю в сентябре, если хотите поздравить). Я также работаю в ассоциации профессионалов здравоохранения. Я делаю видео на YouTube с уроками по криптовалюте (ищите 'Les Occaz à Séb'). Я также на Twitch, где провожу некоторые прямые трансляции, но это не очень популярно."
-        },
-            ar: {
-                title: "مرحبًا بك في SocklessCoin 🧦",
-                subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
-                findButton: "ابحث عن جورب",
-                telegramButton: "جرب روبوت Telegram",
-                donationText: "من فضلك ادعمني حتى تتوقف زوجتي عن ترك جواربها في كل مكان.",
-                donationPlaceholder: "أدخل المبلغ بالـ SOL",
-                sendDonation: "إرسال الدعم",
-                invalidAmount: "الرجاء إدخال مبلغ صحيح!",
-                connectWallet: "الرجاء توصيل المحفظة الخاصة بك.",
-                insufficientFunds: "الرصيد غير كافٍ لإكمال المعاملة.",
-                userRejected: "تم رفض المعاملة من قبل المستخدم.",
-                genericError: "حدث خطأ. حاول مرة أخرى.",
-                success: "شكرًا على دعمك! تمت المعاملة بنجاح مع التوقيع:",
-                faqTitle: "الأسئلة الشائعة",
-                additionalQuestions: "أسئلة إضافية",
+               },
+        ar: {
+            title: "مرحبًا بك في SocklessCoin 🧦",
+            subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
+            findButton: "ابحث عن جورب",
+            telegramButton: "جرب روبوت Telegram",
+            donationText: "من فضلك ادعمني حتى تتوقف زوجتي عن ترك جواربها في كل مكان.",
+            donationPlaceholder: "أدخل المبلغ بالـ SOL",
+            sendDonation: "إرسال الدعم",
+            invalidAmount: "الرجاء إدخال مبلغ صحيح!",
+            connectWallet: "الرجاء توصيل المحفظة الخاصة بك.",
+            insufficientFunds: "الرصيد غير كافٍ لإكمال المعاملة.",
+            userRejected: "تم رفض المعاملة من قبل المستخدم.",
+            genericError: "حدث خطأ. حاول مرة أخرى.",
+            success: "شكرًا على دعمك! تمت المعاملة بنجاح مع التوقيع:",
+            faqTitle: "الأسئلة الشائعة",
+            additionalQuestions: "أسئلة إضافية",
             question1: "السؤال 1: (مرحلة ما قبل الإطلاق) لماذا هناك نسبة عالية لدى الحاصلين؟",
             answer1: "النسبة الكبيرة التي تراها لدى المالكين ناتجة عن أن الفريق يملك معظم الإمداد ليتم توزيعها تدريجياً. تخيل ذلك كمخزن للجوارب: في البداية، كل الجوارب موجودة هناك، لكن كلما استخدمتها، يخلو المخزن أكثر. كل شراء يأخذ بعض التوكنات من هذه الاحتياطيات، ويضعها في يديك... أو بالأحرى، في محفظتك.",
             question2: "السؤال 2: هذا خدعة!",
@@ -470,10 +469,9 @@
             question6: "السؤال 6: ماذا تفعل إلى جانب هذا كله؟",
             answer6: "الكثير من الأشياء! أنا طالب في برنامج ماجستير في الصحة العامة (أنهي في سبتمبر إذا كنت تريد إرسال تهاني). أنا أيضاً موظف في جمعية مهنيي الصحة. أقوم بصنع مقاطع فيديو على YouTube مع دروس حول العملات المشفرة (ابحث عن 'Les Occaz à Séb'). أنا أيضاً على Twitch حيث أقوم ببعض البث المباشر لكنه ليس شائعاً كثيراً."
         }
-        };
+    };
 
-        // Gestion des images
-        // Gestion des images
+    // Gestion des images
     const socks = ["sockImage1", "sockImage2", "sockImage3"];
 
     function showSock() {
@@ -641,6 +639,6 @@
         // Afficher une chaussette au chargement de la page
         showSock();
     });
-    </script>
+</script>
 </body>
 </html>
