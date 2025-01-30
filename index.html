@@ -249,11 +249,16 @@
             try {
                 await window.solana.connect();
                 fromPubKey = window.solana.publicKey; // Réaffecter après connexion
-            } catch (error) {
-                console.error("Failed to connect wallet:", error);
-                alert('Failed to connect wallet. Please try again.');
-                return;
-            }
+            } catch (err) {
+    console.error('Erreur lors de l\'envoi de la donation : ', err);
+    if (err.message.includes('insufficient funds')) {
+        alert('Fonds insuffisants pour compléter la transaction.');
+    } else if (err.message.includes('User rejected the request')) {
+        alert('La transaction a été annulée par l\'utilisateur.');
+    } else {
+        alert('Une erreur est survenue. Veuillez réessayer.');
+    }
+}
         }
 
         try {
