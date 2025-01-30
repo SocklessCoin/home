@@ -1,69 +1,44 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocklessCoin - La Révolution des Chaussettes</title>
+    <title>SocklessCoin - The Sock Revolution</title>
     <link rel="icon" type="image/png" href="favicon.ico">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background-color: #f7f7f7;
-            padding: 50px;
-        }
-        h1 {
-            color: #ff5733;
-        }
-        p {
-            font-size: 18px;
-            color: #333;
-        }
-        button {
-            padding: 12px 20px;
-            font-size: 18px;
-            color: white;
-            background-color: #ff5733;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #d44124;
-        }
-        img {
-            margin-top: 20px;
-            max-width: 300px;
-            display: none;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-}
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Bienvenue sur SocklessCoin</h1>
-    <p>Où vont les chaussettes perdues ? Nous avons peut-être une réponse...</p>
-    <button onclick="showSock()">Trouver une chaussette</button>
-    <br>
-    <img id="sockImage" src="" alt="Une chaussette perdue apparaîtra ici">
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen text-center">
+    
+    <div class="bg-white shadow-lg rounded-xl p-8 max-w-lg">
+        <h1 class="text-3xl font-bold text-orange-600">Welcome to SocklessCoin 🧦</h1>
+        <p class="text-gray-600 mt-3">Where do lost socks go? We might have the answer...</p>
+
+        <button onclick="showSock()" 
+            class="mt-5 px-5 py-3 text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition">
+            Find a Sock
+        </button>
+
+        <div class="mt-5">
+            <img id="sockImage" class="hidden w-40 mx-auto rounded-lg shadow-md">
+        </div>
+
+        <a href="https://t.me/YOUR_BOT" target="_blank"
+           class="mt-5 block text-blue-500 hover:text-blue-700 underline">
+            Try the Telegram Bot
+        </a>
+    </div>
 
     <script>
         const socks = [
-    "machine.jpg",
-    "sofa.jpg",
-    "underbed.jpg"
-];
+            "machine.jpg",
+            "sofa.jpg",
+            "underbed.jpg"
+        ];
         
         function showSock() {
             const img = document.getElementById("sockImage");
             img.src = socks[Math.floor(Math.random() * socks.length)];
-            img.style.display = "block";
-            img.style.animation = "fadeIn 0.5s ease-in-out";
+            img.classList.remove("hidden");
         }
     </script>
 </body>
