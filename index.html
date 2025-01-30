@@ -507,38 +507,33 @@
     const lang = translations[language];
     localStorage.setItem('currentLanguage', language);
 
-    const elementsToUpdate = [
-        { id: "title", property: "textContent" },
-        { id: "subtitle", property: "textContent" },
-        { id: "findButton", property: "textContent" },
-        { id: "telegramButton", property: "textContent" },
-        { id: "donationText", property: "textContent" },
-        { id: "donationAmount", property: "placeholder" },
-        { id: "sendDonationButton", property: "textContent" },
-        { id: "faqTitle", property: "textContent" },
-        { id: "additionalQuestions", property: "textContent" }
-    ];
+    // Mise à jour du titre et du sous-titre
+    document.getElementById("title").textContent = lang.title;
+    document.getElementById("subtitle").textContent = lang.subtitle;
 
-    elementsToUpdate.forEach(elem => {
-        const element = document.getElementById(elem.id);
-        if (element) {
-            element[elem.property] = lang[elem.id] || '';
-        } else {
-            console.warn(`Element with id '${elem.id}' not found.`);
-        }
-    });
+    // Mise à jour du texte du bouton "Find a Sock"
+    document.getElementById("findButton").textContent = lang.findButton;
 
+    // Mise à jour du texte du lien Telegram
+    document.getElementById("telegramButton").textContent = lang.telegramButton;
+
+    // Mise à jour du texte de donation
+    document.getElementById("donationText").textContent = lang.donationText;
+    document.getElementById("donationAmount").placeholder = lang.donationPlaceholder;
+
+    // Mise à jour du texte du bouton de donation
+    document.getElementById("sendDonationButton").textContent = lang.sendDonation;
+
+    // Mise à jour des titres de FAQ (si vous l'utilisez)
+    // document.getElementById("faqTitle").textContent = lang.faqTitle || 'Frequently Asked Questions';
+    document.getElementById("additionalQuestions").textContent = lang.additionalQuestions;
+
+    // Mise à jour des questions et réponses de la FAQ
     for (let i = 1; i <= 6; i++) {
-        const question = document.getElementById(`question${i}`);
-        const answer = document.getElementById(`answer${i}`);
-        if (question && answer) {
-            question.textContent = lang[`question${i}`];
-            answer.textContent = lang[`answer${i}`];
-        } else {
-            console.warn(`Element with id 'question${i}' or 'answer${i}' not found.`);
-        }
+        document.getElementById(`question${i}`).textContent = lang[`question${i}`];
+        document.getElementById(`answer${i}`).textContent = lang[`answer${i}`];
     }
- }
+}
 
     function openLightbox(sockId) {
         const imageSrc = document.getElementById(sockId).src;
