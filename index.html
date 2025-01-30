@@ -34,11 +34,12 @@
         }
 
         .sock-images img {
-            width: 200px; /* Ajuste la taille des images */
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+            width: 100%;   /* Utilise la largeur disponible */
+            height: auto;  /* Garde les proportions */
+            max-width: 200px;  /* Limite la taille à un maximum */
+            display: block;  /* Assure que l'image s'affiche correctement */
+    }
+
 
         /* Assure la responsivité */
         @media (max-width: 768px) {
@@ -107,10 +108,11 @@
         ];
         
         function showSock() {
-            const img = document.getElementById("sockImage");
-            img.src = socks[Math.floor(Math.random() * socks.length)];
-            img.classList.remove("hidden");
-        }
+    const img = document.getElementById("sockImage");
+    img.src = socks[Math.floor(Math.random() * socks.length)];
+    img.classList.remove("hidden"); // Supprimer la classe hidden
+    img.style.display = "block"; // Assurer l'affichage
+}
 
         // Language Translations
         const translations = {
