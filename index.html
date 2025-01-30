@@ -206,38 +206,54 @@
     <input type="number" id="donationAmount" placeholder="Entrez le montant en SOL" />
     <button id="sendDonationButton">Envoyer le soutien</button>
 </div>
-document.getElementById('sendDonationButton').onclick = function() {
-    const amount = document.getElementById('donationAmount').value;
-    if (amount && amount > 0) {
-        // Appel de la fonction d'envoi de donation Solana
-        sendDonation(amount);
-    } else {
-        alert('Veuillez entrer un montant valide.');
+
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.38.0/dist/web3.min.js"></script>
+
+<script>
+    document.getElementById('sendDonationButton').onclick = function() {
+        const amount = document.getElementById('donationAmount').value;
+        if (amount && amount > 0) {
+            // Appel de la fonction d'envoi de donation Solana
+            sendDonation(amount);
+        } else {
+            alert('Veuillez entrer un montant valide.');
+        }
+    };
+
+    async function sendDonation(amount) {
+        try {
+            // Vérifie si le portefeuille Solana est connecté (Phantom par exemple)
+            const payer = window.solana;
+            if (!payer) {
+                alert("Veuillez connecter votre portefeuille Solana.");
+                return;
+            }
+
+            // Obtenir la clé publique de l'utilisateur
+            const payerPublicKey = payer.publicKey.toString();
+            console.log("Clé publique de l'utilisateur :", payerPublicKey);
+
+            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+
+            const recipient = "TonAdresseSolanaIci"; // Remplace par l'adresse de destination
+            const transaction = new solanaWeb3.Transaction().add(
+                solanaWeb3.SystemProgram.transfer({
+                    fromPubkey: payer.publicKey,
+                    toPubkey: new solanaWeb3.PublicKey(recipient),
+                    lamports: solanaWeb3.LAMPORTS_PER_SOL * amount // Conversion du montant SOL en lamports
+                })
+            );
+
+            // Envoyer et confirmer la transaction
+            const signature = await solanaWeb3.sendAndConfirmTransaction(connection, transaction, [payer]);
+
+            alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
+        } catch (err) {
+            console.error('Erreur lors de l\'envoi de la donation : ', err);
+            alert('Une erreur est survenue. Veuillez réessayer.');
+        }
     }
-};
-
-async function sendDonation(amount) {
-    try {
-        // Utilisation de Solana Pay ou d'une solution de paiement pour envoyer la donation
-        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
-        const payer = await solanaWeb3.Keypair.generate();  // Ici, le payeur pourrait être l'utilisateur connecté
-        const recipient = "<Ton adresse Solana>";  // Adresse du portefeuille de destination
-
-        const transaction = new solanaWeb3.Transaction().add(
-            solanaWeb3.SystemProgram.transfer({
-                fromPubkey: payer.publicKey,
-                toPubkey: recipient,
-                lamports: solanaWeb3.LAMPORTS_PER_SOL * amount // Conversion du montant SOL en lamports
-            })
-        );
-
-        const signature = await solanaWeb3.sendAndConfirmTransaction(connection, transaction, [payer]);
-        alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
-    } catch (err) {
-        console.error('Erreur lors de l\'envoi de la donation : ', err);
-        alert('Une erreur est survenue. Veuillez réessayer.');
-    }
-}
+</script>
 
     
     <script>
