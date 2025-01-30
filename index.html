@@ -208,67 +208,35 @@
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest"></script>
-
-
 <script>
-    document.getElementById('sendDonationButton').onclick = async function() {
-        const amount = parseFloat(document.getElementById('donationAmount').value);
-        if (isNaN(amount) || amount <= 0) {
-            alert('Veuillez entrer un montant valide.');
-            return;
-        }
-        await sendDonation(amount);
-    };
+  // Attendre que la bibliothèque soit bien chargée
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("Solana Web3.js chargé :", solanaWeb3);
+  });
 
-    async function sendDonation(amount) {
+  async function sendDonation(amount) {
     try {
-        // Vérifie si le wallet Phantom est installé
-        if (!window.solana) {
-            alert("Veuillez installer un portefeuille Solana (Phantom, BitgetWallet...).");
-            return;
-        }
+      const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+      const payer = solanaWeb3.Keypair.generate(); // Simulé, l'utilisateur doit signer avec son wallet
+      const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc");
+      
+      const transaction = new solanaWeb3.Transaction().add(
+        solanaWeb3.SystemProgram.transfer({
+          fromPubkey: payer.publicKey,
+          toPubkey: recipient,
+          lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
+        })
+      );
 
-        // Connexion au wallet
-        const provider = window.solana;
-        if (!provider.isPhantom && !provider.isBitget) {
-            alert("Veuillez utiliser un wallet compatible comme Phantom ou BitgetWallet.");
-            return;
-        }
-
-        // Demande la connexion au wallet
-        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
-        await provider.connect();
-        const payer = provider.publicKey; // Récupère l'adresse du wallet connecté
-
-        if (!payer) {
-            alert("Connexion au wallet échouée. Veuillez réessayer.");
-            return;
-        }
-
-        const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc"); // Remplace par ton adresse
-
-        // Création de la transaction
-        const transaction = new solanaWeb3.Transaction().add(
-            solanaWeb3.SystemProgram.transfer({
-                fromPubkey: payer,
-                toPubkey: recipient,
-                lamports: solanaWeb3.LAMPORTS_PER_SOL * amount // Conversion SOL en lamports
-            })
-        );
-
-        // Signature et envoi de la transaction
-        const { signature } = await provider.signAndSendTransaction(transaction);
-        await connection.confirmTransaction(signature, 'confirmed');
-
-        alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
-
+      const signature = await solanaWeb3.sendAndConfirmTransaction(connection, transaction, [payer]);
+      alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
     } catch (err) {
-        console.error("Erreur lors de l'envoi de la donation :", err);
-        alert("Une erreur est survenue. Veuillez réessayer.");
+      console.error('Erreur lors de l\'envoi de la donation : ', err);
+      alert('Une erreur est survenue. Veuillez réessayer.');
     }
-}
-
+  }
 </script>
+
 
 
     
