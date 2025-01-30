@@ -3,53 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.ico">
     <title>SocklessCoin - The Sock Revolution</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Texture de fond (style tambour de machine à laver) */
+        body {
+            background: radial-gradient(circle, rgba(230, 230, 230, 0.8) 10%, rgba(180, 180, 180, 0.6) 40%, rgba(220, 220, 220, 0.8) 60%);
+            background-size: 50px 50px;
+        }
+
+        /* Box Shadow et bords arrondis pour la zone du contenu */
+        .content-box {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+        }
+
+        /* Images alignées à droite, avec largeur ajustée */
+        .sock-images {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sock-images img {
+            width: 200px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Assure la responsivité */
+        @media (max-width: 768px) {
+            .content-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sock-images {
+                margin-top: 1rem;
+            }
+
+            .sock-images img {
+                width: 150px;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-900 flex flex-col items-center justify-center min-h-screen text-center transition duration-300">
-    
-    <!-- Dark Mode Toggle -->
-    <button onclick="toggleDarkMode()" 
-        class="absolute top-4 right-4 px-3 py-1 text-sm bg-gray-300 rounded-md shadow hover:bg-gray-400 transition">
-        🌙
-    </button>
+<body class="text-gray-900 flex flex-col items-center justify-center min-h-screen text-center">
 
-    <div class="bg-white dark:bg-gray-800 dark:text-white shadow-lg rounded-xl p-8 max-w-lg transition duration-300">
-        <h1 class="text-3xl font-bold text-orange-600 dark:text-orange-400" id="title">Welcome to SocklessCoin 🧦</h1>
-        <p class="text-gray-600 dark:text-gray-300 mt-3" id="subtitle">Where do lost socks go? We might have the answer...</p>
+    <!-- Contenu principal avec deux zones -->
+    <div class="content-box">
+        <!-- Zone gauche avec texte, bouton, et sélecteur de langue -->
+        <div class="flex flex-col items-start w-full">
+            <h1 class="text-3xl font-bold text-orange-600" id="title">Welcome to SocklessCoin 🧦</h1>
+            <p class="text-gray-600 mt-3" id="subtitle">Where do lost socks go? We might have the answer...</p>
 
-        <button onclick="showSock()" 
-            class="mt-5 px-5 py-3 text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition">
-            <span id="btn-find">Find a Sock</span>
-        </button>
+            <button onclick="showSock()" 
+                class="mt-5 px-5 py-3 text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition">
+                <span id="btn-find">Find a Sock</span>
+            </button>
 
-        <div class="mt-5 flex justify-end"> <!-- Align images to the right -->
-            <img id="sockImage" class="hidden w-64 mx-3 rounded-lg shadow-md">
+            <div class="mt-5">
+                <select id="languageSelect" class="px-3 py-2 rounded-md border bg-gray-200 text-gray-900 transition"
+                    onchange="changeLanguage(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="zh">🇨🇳 中文</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                </select>
+            </div>
         </div>
 
-        <a href="https://t.me/YOUR_BOT" target="_blank"
-           class="mt-5 block text-blue-500 hover:text-blue-700 underline">
-            <span id="btn-bot">Try the Telegram Bot</span>
-        </a>
-
-        <!-- Language Selector -->
-        <select id="languageSelect" class="mt-5 px-3 py-2 rounded-md border bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white transition"
-            onchange="changeLanguage(this.value)">
-            <option value="en">🇬🇧 English</option>
-            <option value="fr">🇫🇷 Français</option>
-            <option value="zh">🇨🇳 中文</option>
-            <option value="ru">🇷🇺 Русский</option>
-            <option value="ar">🇸🇦 العربية</option>
-        </select>
+        <!-- Zone droite avec les images de chaussettes -->
+        <div class="sock-images">
+            <img id="sockImage" class="hidden" alt="Sock image">
+        </div>
     </div>
 
+    <!-- Lien vers le bot Telegram -->
+    <a href="https://t.me/YOUR_BOT" target="_blank"
+       class="mt-5 block text-blue-500 hover:text-blue-700 underline">
+        <span id="btn-bot">Try the Telegram Bot</span>
+    </a>
+
     <!-- Version Number -->
-    <p class="mt-5 text-xs text-gray-500 dark:text-gray-400">Version 1.0.6</p>
+    <p class="mt-5 text-xs text-gray-500">Version 1.0.6</p>
 
     <script>
         // Lost Socks Images
         const socks = [
-            "machine.jpg", // Bigger size
+            "machine.jpg",
             "sofa.jpg",
             "underbed.jpg"
         ];
@@ -58,19 +110,6 @@
             const img = document.getElementById("sockImage");
             img.src = socks[Math.floor(Math.random() * socks.length)];
             img.classList.remove("hidden");
-        }
-
-        // Dark Mode Toggle
-        function toggleDarkMode() {
-            // Toggle the 'dark' class on the <body> element
-            document.body.classList.toggle("dark");
-            // Change the button icon based on dark mode state
-            const button = document.querySelector("button");
-            if (document.body.classList.contains("dark")) {
-                button.innerHTML = "🌞"; // Sun icon for light mode
-            } else {
-                button.innerHTML = "🌙"; // Moon icon for dark mode
-            }
         }
 
         // Language Translations
