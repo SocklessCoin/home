@@ -226,52 +226,92 @@
                 title: "Welcome to SocklessCoin 🧦",
                 subtitle: "Where do lost socks go? We might have the answer...",
                 btnFind: "Find a Sock",
-                btnBot: "Try the Telegram Bot"
+                btnBot: "Try the Telegram Bot",
+                lang: {
+                    en: "🇬🇧 English",
+                    fr: "🇫🇷 French",
+                    zh: "🇨🇳 Chinese",
+                    ru: "🇷🇺 Russian",
+                    ar: "🇸🇦 Arabic"
+                }
             },
             fr: {
                 title: "Bienvenue sur SocklessCoin 🧦",
                 subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
                 btnFind: "Trouver une chaussette",
-                btnBot: "Tester le bot Telegram"
+                btnBot: "Tester le bot Telegram",
+                lang: {
+                    en: "🇬🇧 Anglais",
+                    fr: "🇫🇷 Français",
+                    zh: "🇨🇳 Chinois",
+                    ru: "🇷🇺 Russe",
+                    ar: "🇸🇦 Arabe"
+                }
             },
             zh: {
                 title: "欢迎来到 SocklessCoin 🧦",
                 subtitle: "丢失的袜子去了哪里？ 也许我们有答案...",
                 btnFind: "找一只袜子",
-                btnBot: "尝试 Telegram 机器人"
+                btnBot: "尝试 Telegram 机器人",
+                lang: {
+                    en: "🇬🇧 英语",
+                    fr: "🇫🇷 法语",
+                    zh: "🇨🇳 中文",
+                    ru: "🇷🇺 俄语",
+                    ar: "🇸🇦 阿拉伯语"
+                }
             },
             ru: {
                 title: "Добро пожаловать в SocklessCoin 🧦",
                 subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
                 btnFind: "Найти носок",
-                btnBot: "Попробовать бота в Telegram"
+                btnBot: "Попробовать бота в Telegram",
+                lang: {
+                    en: "🇬🇧 Английский",
+                    fr: "🇫🇷 Французский",
+                    zh: "🇨🇳 Китайский",
+                    ru: "🇷🇺 Русский",
+                    ar: "🇸🇦 Арабский"
+                }
             },
             ar: {
                 title: "مرحبًا بك في SocklessCoin 🧦",
                 subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
                 btnFind: "ابحث عن جورب",
-                btnBot: "جرب بوت تليجرام"
+                btnBot: "جرب روبوت Telegram",
+                lang: {
+                    en: "🇬🇧 الإنجليزية",
+                    fr: "🇫🇷 الفرنسية",
+                    zh: "🇨🇳 الصينية",
+                    ru: "🇷🇺 الروسية",
+                    ar: "🇸🇦 العربية"
+                }
             }
         };
 
-        function changeLanguage(lang) {
-            document.getElementById("title").textContent = translations[lang].title;
-            document.getElementById("subtitle").textContent = translations[lang].subtitle;
-            document.querySelector("button").textContent = translations[lang].btnFind;
-            document.querySelector("a").textContent = translations[lang].btnBot;
+        function changeLanguage(language) {
+            const lang = translations[language];
+
+            document.getElementById("title").textContent = lang.title;
+            document.getElementById("subtitle").textContent = lang.subtitle;
+            document.querySelector("button").textContent = lang.btnFind;
+            document.querySelector("a").textContent = lang.btnBot;
+
+            // Met à jour les options de la sélection de la langue
+            const options = document.getElementById("languageSelect").options;
+            for (let i = 0; i < options.length; i++) {
+                options[i].text = lang.lang[options[i].value];
+            }
         }
 
-        // Lightbox functions
-        function openLightbox(id) {
-            var img = document.getElementById(id);
-            var lightbox = document.getElementById('lightbox');
-            var lightboxImage = document.getElementById('lightboxImage');
-            lightboxImage.src = img.src;
-            lightbox.style.display = "flex";
+        function openLightbox(sockId) {
+            const imageSrc = document.getElementById(sockId).src;
+            document.getElementById("lightboxImage").src = imageSrc;
+            document.getElementById("lightbox").style.display = "flex";
         }
 
         function closeLightbox() {
-            document.getElementById('lightbox').style.display = "none";
+            document.getElementById("lightbox").style.display = "none";
         }
     </script>
 
