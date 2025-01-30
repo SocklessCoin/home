@@ -5,186 +5,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocklessCoin - The Sock Revolution</title>
     <style>
-        body {
-            background: radial-gradient(circle, rgba(160, 160, 160, 0.7) 10%, rgba(130, 130, 130, 0.5) 40%, rgba(150, 150, 150, 0.7) 60%);
-            background-size: 50px 50px;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
+    /* Texture de fond (style tambour de machine à laver) */
+    body {
+        background: radial-gradient(circle, rgba(160, 160, 160, 0.7) 10%, rgba(130, 130, 130, 0.5) 40%, rgba(150, 150, 150, 0.7) 60%);
+        background-size: 50px 50px;
+        font-family: 'Arial', sans-serif; /* Police générale */
+    }
 
-        .content-box {
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: row;
-            gap: 2rem;
-            height: auto;
-            justify-content: space-between;
-            color: #333;
-            margin-bottom: 20px;
-        }
+    /* Box Shadow et bords arrondis pour la zone du contenu */
+    .content-box {
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    height: auto;
+    justify-content: space-between;
+    color: #333; /* Ajout pour améliorer le contraste */
+}
 
-        .content-left {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    /* Zone gauche avec texte et bouton, centré à gauche */
+    .content-left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centré à gauche du rectangle */
+        justify-content: center; /* Centre tout le contenu verticalement */
+    }
 
-        .sock-images {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            min-height: 300px;
-        }
+    /* Zone droite avec images de chaussettes, centrée à droite */
+    .sock-images {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
 
-        /* Style pour le point d'interrogation */
-        .question-mark {
-            font-size: 120px;
-            color: #ff7f00;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 1;
-            transition: opacity 0.5s ease;
-            font-weight: bold;
-            z-index: 1;
-        }
+    .sock-images img {
+    width: 200px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: none; /* Ajouté pour cacher les images */
+}
 
-        .sock-images img {
-            width: 200px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            opacity: 0;
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.5s ease;
-        }
+    /* Modifications des titres */
+    h1, p {
+        text-align: center;
+        font-size: 1.2rem; /* Ajustée pour être plus petite */
+        line-height: 1.4;
+        max-width: 50%; /* Limité à la moitié du rectangle */
+    }
 
-        h1, p {
-            text-align: center;
-            font-size: 1.2rem;
-            line-height: 1.4;
-            max-width: 100%;
-            margin: 10px 0;
-        }
+    /* Réduire la taille des éléments réactifs */
+    select, button {
+        font-size: 1rem;
+        padding: 10px 15px;
+        margin: 10px 0;
+    }
 
-        select, button {
-            font-size: 1rem;
-            padding: 10px 15px;
-            margin: 10px 0;
-        }
+    /* Bouton */
+    button {
+        background-color: #ff7f00;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
 
-        button {
-            background-color: #ff7f00;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    button:hover {
+        background-color: #e67000;
+    }
 
-        button:hover {
-            background-color: #e67000;
-        }
+    /* Menu déroulant */
+    select {
+        background-color: #f3f3f3;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
 
-        .language-select {
-            background-color: #f3f3f3;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
+    /* Styles spécifiques pour le lien Telegram */
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #1e90ff;
+        font-size: 1.1rem;
+        padding: 10px;
+        border: 2px solid #1e90ff;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
 
-        .telegram-link {
-            display: block;
-            text-align: center;
-            margin: 20px auto;
-            text-decoration: none;
-            color: #1e90ff;
-            font-size: 1.1rem;
-            padding: 10px;
-            border: 2px solid #1e90ff;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            max-width: 300px;
-        }
+    a:hover {
+        background-color: #1e90ff;
+        color: white;
+    }
 
-        .telegram-link:hover {
-            background-color: #1e90ff;
-            color: white;
-        }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+    .content-box {
+        flex-direction: column;
+        align-items: center;
+    }
+    .sock-images {
+        margin-top: 1rem;
+    }
+    .sock-images img {
+        width: 100%;
+        max-width: 200px; /* Modification de la taille des images */
+    }
+    h1, p {
+        font-size: 1rem; /* Ajustement de la taille des titres pour une meilleure lisibilité */
+    }
+    select, button {
+        font-size: 0.9rem;
+        width: 80%; /* Ajustement pour les éléments interactifs */
+    }
+}
 
-        .version {
-            font-size: 1rem;
-            color: #777;
-            text-align: center;
-            margin-top: 20px;
-        }
+    /* Affichage de la version */
+    .version {
+        font-size: 1rem;
+        color: #777;
+        text-align: center;
+        margin-top: 20px;
+    }
 
-        .donation-box {
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 20px auto;
-            max-width: 600px;
-            text-align: center;
-        }
+    /* Style de la lightbox */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
 
-        .donation-box input {
-            padding: 10px;
-            margin: 10px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            width: 200px;
-        }
-
-        @media (max-width: 768px) {
-            .content-box {
-                flex-direction: column;
-                align-items: center;
-            }
-            .sock-images {
-                margin-top: 1rem;
-                min-height: 200px;
-            }
-            .sock-images img {
-                width: 150px;
-            }
-            h1, p {
-                font-size: 1rem;
-            }
-            select, button {
-                font-size: 0.9rem;
-                width: auto;
-            }
-            .question-mark {
-                font-size: 80px;
-            }
-        }
+    .lightbox img {
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 15px; /* Coins arrondis pour l'image en grand */
+    }
     </style>
 </head>
 <body>
+
     <div class="content-box">
+        <!-- Zone gauche avec texte, bouton -->
         <div class="content-left">
             <h1 id="title">Welcome to SocklessCoin 🧦</h1>
             <p id="subtitle">Where do lost socks go? We might have the answer...</p>
 
-            <button onclick="showSock()" id="findButton">Find a Sock</button>
+            <button onclick="showSock()">Find a Sock</button>
 
             <div class="mt-5">
-                <select id="languageSelect" class="language-select" onchange="changeLanguage(this.value)">
+                <select id="languageSelect" onchange="changeLanguage(this.value)">
                     <option value="en">🇬🇧 English</option>
                     <option value="fr">🇫🇷 Français</option>
                     <option value="zh">🇨🇳 中文</option>
@@ -194,71 +180,248 @@
             </div>
         </div>
 
+        <!-- Zone droite avec les images de chaussettes -->
         <div class="sock-images">
-            <div id="questionMark" class="question-mark">?</div>
             <img id="sockImage1" src="machine.jpg" alt="Sock image 1" onclick="openLightbox('sockImage1')">
             <img id="sockImage2" src="sofa.jpg" alt="Sock image 2" onclick="openLightbox('sockImage2')">
             <img id="sockImage3" src="underbed.jpg" alt="Sock image 3" onclick="openLightbox('sockImage3')">
         </div>
     </div>
 
-    <a href="https://t.me/YOUR_BOT" target="_blank" class="telegram-link" id="telegramButton">Try the Telegram Bot</a>
-
-    <div class="donation-box">
-        <p id="donationText">Please support me so my wife stops leaving her socks everywhere.</p>
-        <input type="number" id="donationAmount" placeholder="Enter amount in SOL" step="0.1" min="0">
-        <button id="sendDonationButton" onclick="sendDonation()">Send Support</button>
-    </div>
+    <!-- Lien vers le bot Telegram -->
+    <a href="https://t.me/YOUR_BOT" target="_blank">Try the Telegram Bot</a>
 
     <div class="version">Version 1.0</div>
 
-    <script>
-        const socks = ["sockImage1", "sockImage2", "sockImage3"];
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImage" src="" alt="Zoomed Image">
+    </div>
 
-        function showSock() {
-            // Masque le point d'interrogation avec une transition
-            const questionMark = document.getElementById('questionMark');
-            questionMark.style.opacity = '0';
-            
-            // Cache toutes les images d'abord
-            socks.forEach(sock => {
-                const img = document.getElementById(sock);
-                img.style.display = "none";
-                img.style.opacity = "0";
-            });
 
-            // Sélectionne une image aléatoire
-            const randomSock = socks[Math.floor(Math.random() * socks.length)];
-            const selectedImg = document.getElementById(randomSock);
-            
-            // Attend que le point d'interrogation soit masqué
-            setTimeout(() => {
-                questionMark.style.display = 'none';
-                // Affiche l'image sélectionnée avec une animation
-                selectedImg.style.display = "block";
-                setTimeout(() => {
-                    selectedImg.style.opacity = "1";
-                }, 100);
-            }, 500);
+    
+<!-- Assurez-vous que ce script est chargé avant @solana/web3.js -->
+<script type="module">
+  import { Buffer } from "https://cdn.skypack.dev/buffer";
+  window.Buffer = Buffer;
+</script>
+
+<!-- Chargement de Solana Web3.js -->
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+
+<!-- Module polyfill -->
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0"></script>
+
+<!-- Bouton de soutien avec champ de montant -->
+<div id="supportMessage">
+    <p>S'il vous plaît, donnez-moi de la force pour que ma femme arrête de mettre ses chaussettes partout.</p>
+    <input type="number" id="donationAmount" placeholder="Entrez le montant en SOL" />
+    <button id="sendDonationButton">Envoyer le soutien</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof solanaWeb3 === 'undefined') {
+            console.error('Solana Web3 n\'est pas chargé.');
+        } else if (typeof Buffer === 'undefined') {
+            console.error('Buffer n\'est pas défini. Assurez-vous que le polyfill est chargé correctement.');
+        } else {
+            console.log('Solana Web3.js et Buffer chargés avec succès.');
+        }
+    });
+
+    async function sendDonation(amount) {
+        console.log("Montant de la donation :", amount);
+
+        if (!amount || isNaN(amount) || amount <= 0) {
+            alert("Veuillez entrer un montant valide !");
+            return;
         }
 
-        // Au chargement de la page
+        if (!window.solana) {
+            alert('Please install a Solana wallet like Phantom or Solflare to make donations.');
+            return;
+        }
+
+        let fromPubKey = window.solana.publicKey; // Utiliser let pour permettre la réaffectation
+        if (!fromPubKey) {
+            alert('Please connect your wallet.');
+            try {
+                await window.solana.connect();
+                fromPubKey = window.solana.publicKey; // Réaffecter après connexion
+            } catch (err) {
+    console.error('Erreur lors de l\'envoi de la donation : ', err);
+    if (err.message.includes('insufficient funds')) {
+        alert('Fonds insuffisants pour compléter la transaction.');
+    } else if (err.message.includes('User rejected the request')) {
+        alert('La transaction a été annulée par l\'utilisateur.');
+    } else {
+        alert('Une erreur est survenue. Veuillez réessayer.');
+    }
+}
+        }
+
+        try {
+            const connection = new solanaWeb3.Connection("https://warmhearted-small-morning.solana-mainnet.quiknode.pro/ae353180e6fec725c670a0ef82cd9e1bcd64081b", 'confirmed');
+            const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc"); // Remplacez par votre adresse réelle
+
+            // Obtention du recentBlockhash
+            let { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+
+            const transaction = new solanaWeb3.Transaction({
+                recentBlockhash: blockhash,
+                feePayer: fromPubKey
+            }).add(
+                solanaWeb3.SystemProgram.transfer({
+                    fromPubkey: fromPubKey,
+                    toPubkey: recipient,
+                    lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
+                })
+            );
+
+            const signature = await window.solana.signAndSendTransaction(transaction);
+            console.log("Transaction signature:", signature);
+            alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
+
+        } catch (err) {
+            console.error('Erreur lors de l\'envoi de la donation : ', err);
+            if (err.message.includes('insufficient funds')) {
+                alert('Fonds insuffisants pour compléter la transaction.');
+            } else {
+                alert('Une erreur est survenue. Veuillez réessayer.');
+            }
+        }
+    }
+
+    document.getElementById("sendDonationButton").addEventListener("click", function() {
+        const donationAmount = parseFloat(document.getElementById('donationAmount').value);
+        sendDonation(donationAmount);
+    });
+</script>
+
+
+
+
+
+
+
+
+
+    
+    <script>
+        // Lost Socks Images
+        const socks = ["sockImage1", "sockImage2", "sockImage3"];
+
+        // Cache toutes les images et affiche une seule image de manière aléatoire au chargement de la page
         window.onload = function() {
-            // Cache toutes les images
             socks.forEach(sock => {
-                const img = document.getElementById(sock);
-                img.style.display = "none";
-                img.style.opacity = "0";
+                document.getElementById(sock).style.display = "none";
             });
-            
-            // Affiche le point d'interrogation
-            const questionMark = document.getElementById('questionMark');
-            questionMark.style.display = 'block';
-            questionMark.style.opacity = '1';
+            showSock(); // Affiche une image aléatoire
         };
 
-        // Reste du code JavaScript (translations, etc.) ...
-        // [Insérez ici le reste de votre code JavaScript pour les traductions et les donations]
+        function showSock() {
+            socks.forEach(sock => {
+                document.getElementById(sock).style.display = "none";
+            });
+
+            const randomSock = socks[Math.floor(Math.random() * socks.length)];
+            document.getElementById(randomSock).style.display = "block";
+        }
+
+        const translations = {
+            en: {
+                title: "Welcome to SocklessCoin 🧦",
+                subtitle: "Where do lost socks go? We might have the answer...",
+                btnFind: "Find a Sock",
+                btnBot: "Try the Telegram Bot",
+                lang: {
+                    en: "🇬🇧 English",
+                    fr: "🇫🇷 French",
+                    zh: "🇨🇳 Chinese",
+                    ru: "🇷🇺 Russian",
+                    ar: "🇸🇦 Arabic"
+                }
+            },
+            fr: {
+                title: "Bienvenue sur SocklessCoin 🧦",
+                subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
+                btnFind: "Trouver une chaussette",
+                btnBot: "Tester le bot Telegram",
+                lang: {
+                    en: "🇬🇧 Anglais",
+                    fr: "🇫🇷 Français",
+                    zh: "🇨🇳 Chinois",
+                    ru: "🇷🇺 Russe",
+                    ar: "🇸🇦 Arabe"
+                }
+            },
+            zh: {
+                title: "欢迎来到 SocklessCoin 🧦",
+                subtitle: "丢失的袜子去了哪里？ 也许我们有答案...",
+                btnFind: "找一只袜子",
+                btnBot: "尝试 Telegram 机器人",
+                lang: {
+                    en: "🇬🇧 英语",
+                    fr: "🇫🇷 法语",
+                    zh: "🇨🇳 中文",
+                    ru: "🇷🇺 俄语",
+                    ar: "🇸🇦 阿拉伯语"
+                }
+            },
+            ru: {
+                title: "Добро пожаловать в SocklessCoin 🧦",
+                subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
+                btnFind: "Найти носок",
+                btnBot: "Попробовать бота в Telegram",
+                lang: {
+                    en: "🇬🇧 Английский",
+                    fr: "🇫🇷 Французский",
+                    zh: "🇨🇳 Китайский",
+                    ru: "🇷🇺 Русский",
+                    ar: "🇸🇦 Арабский"
+                }
+            },
+            ar: {
+                title: "مرحبًا بك في SocklessCoin 🧦",
+                subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
+                btnFind: "ابحث عن جورب",
+                btnBot: "جرب روبوت Telegram",
+                lang: {
+                    en: "🇬🇧 الإنجليزية",
+                    fr: "🇫🇷 الفرنسية",
+                    zh: "🇨🇳 الصينية",
+                    ru: "🇷🇺 الروسية",
+                    ar: "🇸🇦 العربية"
+                }
+            }
+        };
+
+        function changeLanguage(language) {
+            const lang = translations[language];
+
+            document.getElementById("title").textContent = lang.title;
+            document.getElementById("subtitle").textContent = lang.subtitle;
+            document.querySelector("button").textContent = lang.btnFind;
+            document.querySelector("a").textContent = lang.btnBot;
+
+            // Met à jour les options de la sélection de la langue
+            const options = document.getElementById("languageSelect").options;
+            for (let i = 0; i < options.length; i++) {
+                options[i].text = lang.lang[options[i].value];
+            }
+        }
+
+        function openLightbox(sockId) {
+            const imageSrc = document.getElementById(sockId).src;
+            document.getElementById("lightboxImage").src = imageSrc;
+            document.getElementById("lightbox").style.display = "flex";
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
     </script>
+
 </body>
 </html>
