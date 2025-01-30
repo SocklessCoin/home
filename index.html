@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocklessCoin - The Sock Revolution</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
     /* Texture de fond (style tambour de machine à laver) */
     body {
-        background: radial-gradient(circle, rgba(230, 230, 230, 0.7) 10%, rgba(200, 200, 200, 0.5) 40%, rgba(220, 220, 220, 0.7) 60%);
+        background: radial-gradient(circle, rgba(160, 160, 160, 0.7) 10%, rgba(130, 130, 130, 0.5) 40%, rgba(150, 150, 150, 0.7) 60%);
         background-size: 50px 50px;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Arial', sans-serif; /* Police générale */
     }
 
     /* Box Shadow et bords arrondis pour la zone du contenu */
@@ -22,47 +21,77 @@
         display: flex;
         flex-direction: row;
         gap: 2rem;
-        width: 90%;
-        max-width: 1200px; /* Limiter la largeur pour éviter un rectangle trop large */
-        margin: 0 auto;
     }
 
-    /* Image Horizontale - Taille ajustée */
+    /* Images alignées à droite, avec largeur ajustée */
+    .sock-images {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
     .sock-images img {
-        width: 300px;
+        width: 250px;
         height: auto;
         border-radius: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         display: none; /* Assurez-vous que l'image soit cachée au départ */
-        transition: transform 0.3s ease; /* Ajout d'une transition douce */
     }
 
-    .sock-images img:hover {
-        transform: scale(1.05); /* Légère agrandissement au survol */
+    /* Modifications des titres */
+    h1, p {
+        text-align: left;
+        font-size: 1.5rem; /* Ajuster la taille de la police */
+        line-height: 1.4;
     }
 
-    /* Amélioration du titre */
-    #title {
-        font-size: 3rem;
-        font-weight: 600;
-        color: #F36F3E;
-        margin-bottom: 1rem;
+    /* Réduire la taille des éléments réactifs */
+    select, button {
+        font-size: 1rem;
+        padding: 10px 15px;
+        margin: 10px 0;
     }
 
-    /* Bouton et sélection de langue plus grands et modernes */
-    button, select {
-        padding: 0.8rem 2rem;
-        border-radius: 10px;
-        font-size: 1.2rem;
-        border: none;
-        background-color: #F36F3E;
+    /* Bouton */
+    button {
+        background-color: #ff7f00;
         color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-    button:hover, select:hover {
-        background-color: #F47F4E;
+    button:hover {
+        background-color: #e67000;
+    }
+
+    /* Menu déroulant */
+    select {
+        background-color: #f3f3f3;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    /* Styles spécifiques pour le lien Telegram */
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #1e90ff;
+        font-size: 1.1rem;
+        padding: 10px;
+        border: 2px solid #1e90ff;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    a:hover {
+        background-color: #1e90ff;
+        color: white;
     }
 
     /* Responsive Design */
@@ -80,15 +109,29 @@
             width: 200px;
         }
 
-        #title {
-            font-size: 2rem;
+        h1, p {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        select, button {
+            font-size: 0.9rem;
+            width: 80%;
         }
     }
-</style>
-</head>
-<body class="text-gray-900 flex flex-col items-center justify-center min-h-screen text-center">
 
-    <!-- Contenu principal avec deux zones -->
+    /* Affichage de la version */
+    .version {
+        font-size: 1rem;
+        color: #777;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    </style>
+</head>
+<body>
+
     <div class="content-box">
         <!-- Zone gauche avec texte, bouton -->
         <div class="flex flex-col items-start w-full">
@@ -117,14 +160,14 @@
     </div>
 
     <!-- Lien vers le bot Telegram -->
-    <a href="https://t.me/YOUR_BOT" target="_blank" class="mt-5 block text-blue-500 hover:text-blue-700 underline">
-        Try the Telegram Bot
-    </a>
+    <a href="https://t.me/YOUR_BOT" target="_blank">Try the Telegram Bot</a>
+
+    <div class="version">Version 1.0</div>
 
     <script>
         // Lost Socks Images
         const socks = ["sockImage1", "sockImage2", "sockImage3"];
-        
+
         function showSock() {
             socks.forEach(sock => {
                 document.getElementById(sock).style.display = "none";
@@ -134,7 +177,6 @@
             document.getElementById(randomSock).style.display = "block";
         }
 
-        // Translations
         const translations = {
             en: {
                 title: "Welcome to SocklessCoin 🧦",
@@ -175,5 +217,6 @@
             document.querySelector("a").textContent = translations[lang].btnBot;
         }
     </script>
+
 </body>
 </html>
