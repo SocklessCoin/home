@@ -326,57 +326,100 @@
             document.getElementById("lightbox").style.display = "none";
         }
 
-        // Fonction de don Solana
-        async function sendDonation() {
-            const amount = parseFloat(document.getElementById('donationAmount').value);
-            
-            if (!amount || isNaN(amount) || amount <= 0) {
-                alert("Please enter a valid amount!");
-                return;
-            }
+    </script>
 
-            if (!window.solana) {
-                alert('Please install a Solana wallet like Phantom or Solflare to make donations.');
-                return;
-            }
 
+    
+<!-- Chargement de Solana Web3.js -->
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+
+<!-- Module polyfill -->
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0"></script>
+
+<!-- Bouton de soutien avec champ de montant [EFFACE]-->
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof solanaWeb3 === 'undefined') {
+            console.error('Solana Web3 n\'est pas chargé.');
+        } else if (typeof Buffer === 'undefined') {
+            console.error('Buffer n\'est pas défini. Assurez-vous que le polyfill est chargé correctement.');
+        } else {
+            console.log('Solana Web3.js et Buffer chargés avec succès.');
+        }
+    });
+
+    async function sendDonation(amount) {
+        console.log("Montant de la donation :", amount);
+
+        if (!amount || isNaN(amount) || amount <= 0) {
+            alert("Veuillez entrer un montant valide !");
+            return;
+        }
+
+        if (!window.solana) {
+            alert('Please install a Solana wallet like Phantom or Solflare to make donations.');
+            return;
+        }
+
+        let fromPubKey = window.solana.publicKey; // Utiliser let pour permettre la réaffectation
+        if (!fromPubKey) {
+            alert('Please connect your wallet.');
             try {
-                let fromPubKey = window.solana.publicKey;
-                if (!fromPubKey) {
-                    await window.solana.connect();
-                    fromPubKey = window.solana.publicKey;
-                }
-
-                const connection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com", 'confirmed');
-                const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc");
-
-                const { blockhash } = await connection.getLatestBlockhash();
-
-                const transaction = new solanaWeb3.Transaction({
-                    recentBlockhash: blockhash,
-                    feePayer: fromPubKey
-                }).add(
-                    solanaWeb3.SystemProgram.transfer({
-                        fromPubkey: fromPubKey,
-                        toPubkey: recipient,
-                        lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
-                    })
-                );
-
-                const signature = await window.solana.signAndSendTransaction(transaction);
-                alert('Thank you for your support! Transaction signature: ' + signature);
+                await window.solana.connect();
+                fromPubKey = window.solana.publicKey; // Réaffecter après connexion
             } catch (err) {
-                console.error('Donation error:', err);
-                if (err.message.includes('insufficient funds')) {
-                    alert('Insufficient funds to complete the transaction.');
-                } else if (err.message.includes('User rejected')) {
-                    alert('Transaction cancelled by user.');
-                } else {
-                    alert('An error occurred. Please try again.');
-                }
+    console.error('Erreur lors de l\'envoi de la donation : ', err);
+    if (err.message.includes('insufficient funds')) {
+        alert('Fonds insuffisants pour compléter la transaction.');
+    } else if (err.message.includes('User rejected the request')) {
+        alert('La transaction a été annulée par l\'utilisateur.');
+    } else {
+        alert('Une erreur est survenue. Veuillez réessayer.');
+    }
+}
+        }
+
+        try {
+            const connection = new solanaWeb3.Connection("https://warmhearted-small-morning.solana-mainnet.quiknode.pro/ae353180e6fec725c670a0ef82cd9e1bcd64081b", 'confirmed');
+            const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc"); // Remplacez par votre adresse réelle
+
+            // Obtention du recentBlockhash
+            let { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+
+            const transaction = new solanaWeb3.Transaction({
+                recentBlockhash: blockhash,
+                feePayer: fromPubKey
+            }).add(
+                solanaWeb3.SystemProgram.transfer({
+                    fromPubkey: fromPubKey,
+                    toPubkey: recipient,
+                    lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
+                })
+            );
+
+            const signature = await window.solana.signAndSendTransaction(transaction);
+            console.log("Transaction signature:", signature);
+            alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
+
+        } catch (err) {
+            console.error('Erreur lors de l\'envoi de la donation : ', err);
+            if (err.message.includes('insufficient funds')) {
+                alert('Fonds insuffisants pour compléter la transaction.');
+            } else {
+                alert('Une erreur est survenue. Veuillez réessayer.');
             }
         }
-    </script>
+    }
+
+    document.getElementById("sendDonationButton").addEventListener("click", function() {
+        const donationAmount = parseFloat(document.getElementById('donationAmount').value);
+        sendDonation(donationAmount);
+    });
+</script>
+
+    
 </body>
 </html>
 </antA
