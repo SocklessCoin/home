@@ -22,9 +22,19 @@
         flex-direction: row;
         gap: 2rem;
         height: auto; /* Hauteur automatique pour plus de flexibilité */
+        justify-content: space-between; /* Aligne les deux sections à gauche et à droite */
     }
 
-    /* Images alignées à droite, avec largeur ajustée */
+    /* Zone gauche avec texte et bouton, centré à gauche */
+    .content-left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centré à gauche du rectangle */
+        justify-content: center; /* Centre tout le contenu verticalement */
+    }
+
+    /* Zone droite avec images de chaussettes, centrée à droite */
     .sock-images {
         flex: 1;
         display: flex;
@@ -43,7 +53,7 @@
 
     /* Modifications des titres */
     h1, p {
-        text-align: left;
+        text-align: center;
         font-size: 1.2rem; /* Ajustée pour être plus petite */
         line-height: 1.4;
         max-width: 50%; /* Limité à la moitié du rectangle */
@@ -149,15 +159,6 @@
         max-height: 80%;
         border-radius: 15px; /* Coins arrondis pour l'image en grand */
     }
-
-    /* Alignement du contenu à gauche pour le texte et les boutons */
-    .content-left {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Centrer à gauche */
-        width: 100%;
-    }
-
     </style>
 </head>
 <body>
