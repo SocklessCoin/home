@@ -66,6 +66,17 @@
                 class="mt-5 px-5 py-3 text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition">
                 Find a Sock
             </button>
+
+            <div class="mt-5">
+                <select id="languageSelect" class="px-3 py-2 rounded-md border bg-gray-200 text-gray-900 transition"
+                    onchange="changeLanguage(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="zh">🇨🇳 中文</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                </select>
+            </div>
         </div>
 
         <!-- Zone droite avec les images de chaussettes -->
@@ -89,6 +100,41 @@
             // Afficher une image aléatoire
             const randomSock = socks[Math.floor(Math.random() * socks.length)];
             document.getElementById(randomSock).style.display = "block";
+        }
+
+        // Translations
+        const translations = {
+            en: {
+                title: "Welcome to SocklessCoin 🧦",
+                subtitle: "Where do lost socks go? We might have the answer...",
+                btnFind: "Find a Sock"
+            },
+            fr: {
+                title: "Bienvenue sur SocklessCoin 🧦",
+                subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
+                btnFind: "Trouver une chaussette"
+            },
+            zh: {
+                title: "欢迎来到 SocklessCoin 🧦",
+                subtitle: "丢失的袜子去了哪里？ 也许我们有答案...",
+                btnFind: "找一只袜子"
+            },
+            ru: {
+                title: "Добро пожаловать в SocklessCoin 🧦",
+                subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
+                btnFind: "Найти носок"
+            },
+            ar: {
+                title: "مرحبًا بك في SocklessCoin 🧦",
+                subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
+                btnFind: "ابحث عن جورب"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById("title").textContent = translations[lang].title;
+            document.getElementById("subtitle").textContent = translations[lang].subtitle;
+            document.querySelector("button").textContent = translations[lang].btnFind;
         }
     </script>
 </body>
