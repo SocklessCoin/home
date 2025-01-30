@@ -5,215 +5,314 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocklessCoin - The Sock Revolution</title>
     <style>
-        body {
-            background: radial-gradient(circle, rgba(230, 230, 230, 0.7) 10%, rgba(200, 200, 200, 0.5) 40%, rgba(220, 220, 220, 0.7) 60%);
-            background-size: 50px 50px;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+    /* Texture de fond (style tambour de machine à laver) */
+    body {
+        background: radial-gradient(circle, rgba(160, 160, 160, 0.7) 10%, rgba(130, 130, 130, 0.5) 40%, rgba(150, 150, 150, 0.7) 60%);
+        background-size: 50px 50px;
+        font-family: 'Arial', sans-serif; /* Police générale */
+    }
 
+    /* Box Shadow et bords arrondis pour la zone du contenu */
+    .content-box {
+        background: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        height: auto; /* Hauteur automatique pour plus de flexibilité */
+        justify-content: space-between; /* Aligne les deux sections à gauche et à droite */
+    }
+
+    /* Zone gauche avec texte et bouton, centré à gauche */
+    .content-left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centré à gauche du rectangle */
+        justify-content: center; /* Centre tout le contenu verticalement */
+    }
+
+    /* Zone droite avec images de chaussettes, centrée à droite */
+    .sock-images {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .sock-images img {
+        width: 250px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    /* Modifications des titres */
+    h1, p {
+        text-align: center;
+        font-size: 1.2rem; /* Ajustée pour être plus petite */
+        line-height: 1.4;
+        max-width: 50%; /* Limité à la moitié du rectangle */
+    }
+
+    /* Réduire la taille des éléments réactifs */
+    select, button {
+        font-size: 1rem;
+        padding: 10px 15px;
+        margin: 10px 0;
+    }
+
+    /* Bouton */
+    button {
+        background-color: #ff7f00;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #e67000;
+    }
+
+    /* Menu déroulant */
+    select {
+        background-color: #f3f3f3;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    /* Styles spécifiques pour le lien Telegram */
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #1e90ff;
+        font-size: 1.1rem;
+        padding: 10px;
+        border: 2px solid #1e90ff;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    a:hover {
+        background-color: #1e90ff;
+        color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
         .content-box {
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            display: flex;
             flex-direction: column;
-            gap: 1rem;
-            max-width: 600px;
-            margin: 2rem auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sock-button {
-            display: inline-block;
-            background: #ff7f00;
-            border-radius: 20px;
-            padding: 10px 30px;
-            font-size: 1.2rem;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .sock-button:hover {
-            transform: scale(1.1);
-            background-color: #e67000;
-        }
-
-        .sock-button:active {
-            transform: scale(0.9);
-        }
-
-        #donationContent {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .donation-img {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        .translate-btn {
-            font-size: 1.2rem;
-            padding: 10px 20px;
-            margin-top: 20px;
-            cursor: pointer;
-            background: #ff7f00;
-            color: white;
-            border-radius: 10px;
-            transition: transform 0.2s;
-        }
-
-        .translate-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .select-language {
-            margin-top: 10px;
-        }
-
-        /* Lightbox Styling */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            justify-content: center;
             align-items: center;
         }
 
-        .lightbox img {
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        .sock-images {
+            margin-top: 1rem;
         }
 
-        .lightbox:target {
-            display: flex;
+        .sock-images img {
+            width: 200px;
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
+        h1, p {
+            font-size: 1.2rem;
+            text-align: center;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #ff7f00;
-            border-radius: 10px;
+        select, button {
+            font-size: 0.9rem;
+            width: 80%;
         }
+    }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+    /* Affichage de la version */
+    .version {
+        font-size: 1rem;
+        color: #777;
+        text-align: center;
+        margin-top: 20px;
+    }
 
+    /* Style de la lightbox */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox img {
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 15px; /* Coins arrondis pour l'image en grand */
+    }
     </style>
 </head>
 <body>
 
     <div class="content-box">
-        <h1 id="title">Welcome to SocklessCoin 🧦</h1>
-        <p id="subtitle">Where do lost socks go? We might have the answer...</p>
+        <!-- Zone gauche avec texte, bouton -->
+        <div class="content-left">
+            <h1 id="title">Welcome to SocklessCoin 🧦</h1>
+            <p id="subtitle">Where do lost socks go? We might have the answer...</p>
 
-        <button id="suspectButton" class="sock-button">Découvrez un suspect potentiel</button>
+            <button onclick="showSock()">Find a Sock</button>
 
-        <div id="donationContent">
-            <img src="bonus_image.jpg" alt="Bonus Image" class="donation-img">
-            <p id="donationText">Me soutenir dans cette guerre</p>
-            <a href="solana://YOUR_SOLANA_ADDRESS_HERE" class="sock-button">Donate Solana</a>
+            <div class="mt-5">
+                <select id="languageSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="zh">🇨🇳 中文</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                </select>
+            </div>
         </div>
 
-        <div class="select-language">
-            <select id="languageSelect" onchange="changeLanguage(this.value)">
-                <option value="en">🇬🇧 English</option>
-                <option value="fr">🇫🇷 Français</option>
-                <option value="zh">🇨🇳 中文</option>
-                <option value="ru">🇷🇺 Русский</option>
-                <option value="ar">🇸🇦 العربية</option>
-            </select>
+        <!-- Zone droite avec les images de chaussettes -->
+        <div class="sock-images">
+            <img id="sockImage1" src="machine.jpg" alt="Sock image 1" onclick="openLightbox('sockImage1')">
+            <img id="sockImage2" src="sofa.jpg" alt="Sock image 2" onclick="openLightbox('sockImage2')">
+            <img id="sockImage3" src="underbed.jpg" alt="Sock image 3" onclick="openLightbox('sockImage3')">
         </div>
+    </div>
 
-        <!-- Lightbox for zooming images -->
-        <a href="#lightbox" class="sock-button">Click to zoom image</a>
-        <div id="lightbox" class="lightbox">
-            <img src="large_image.jpg" alt="Large Image">
-        </div>
+    <!-- Lien vers le bot Telegram -->
+    <a href="https://t.me/YOUR_BOT" target="_blank">Try the Telegram Bot</a>
 
+    <div class="version">Version 1.0</div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImage" src="" alt="Zoomed Image">
     </div>
 
     <script>
+        // Lost Socks Images
+        const socks = ["sockImage1", "sockImage2", "sockImage3"];
+
+        // Cache toutes les images et affiche une seule image de manière aléatoire au chargement de la page
+        window.onload = function() {
+            socks.forEach(sock => {
+                document.getElementById(sock).style.display = "none";
+            });
+            showSock(); // Affiche une image aléatoire
+        };
+
+        function showSock() {
+            socks.forEach(sock => {
+                document.getElementById(sock).style.display = "none";
+            });
+
+            const randomSock = socks[Math.floor(Math.random() * socks.length)];
+            document.getElementById(randomSock).style.display = "block";
+        }
+
         const translations = {
             en: {
                 title: "Welcome to SocklessCoin 🧦",
                 subtitle: "Where do lost socks go? We might have the answer...",
-                suspectBtn: "Discover a potential suspect",
-                donationText: "Support me in this war",
-                donateBtn: "Donate Solana"
+                btnFind: "Find a Sock",
+                btnBot: "Try the Telegram Bot",
+                lang: {
+                    en: "🇬🇧 English",
+                    fr: "🇫🇷 French",
+                    zh: "🇨🇳 Chinese",
+                    ru: "🇷🇺 Russian",
+                    ar: "🇸🇦 Arabic"
+                }
             },
             fr: {
                 title: "Bienvenue sur SocklessCoin 🧦",
                 subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
-                suspectBtn: "Découvrez un suspect potentiel",
-                donationText: "Me soutenir dans cette guerre",
-                donateBtn: "Donate Solana"
+                btnFind: "Trouver une chaussette",
+                btnBot: "Tester le bot Telegram",
+                lang: {
+                    en: "🇬🇧 Anglais",
+                    fr: "🇫🇷 Français",
+                    zh: "🇨🇳 Chinois",
+                    ru: "🇷🇺 Russe",
+                    ar: "🇸🇦 Arabe"
+                }
             },
             zh: {
                 title: "欢迎来到 SocklessCoin 🧦",
                 subtitle: "丢失的袜子去了哪里？ 也许我们有答案...",
-                suspectBtn: "发现潜在嫌疑人",
-                donationText: "支持我在这场战争中",
-                donateBtn: "Donate Solana"
+                btnFind: "找一只袜子",
+                btnBot: "尝试 Telegram 机器人",
+                lang: {
+                    en: "🇬🇧 英语",
+                    fr: "🇫🇷 法语",
+                    zh: "🇨🇳 中文",
+                    ru: "🇷🇺 俄语",
+                    ar: "🇸🇦 阿拉伯语"
+                }
             },
             ru: {
                 title: "Добро пожаловать в SocklessCoin 🧦",
                 subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
-                suspectBtn: "Обнаружить возможного подозреваемого",
-                donationText: "Поддержите меня в этой войне",
-                donateBtn: "Donate Solana"
+                btnFind: "Найти носок",
+                btnBot: "Попробовать бота в Telegram",
+                lang: {
+                    en: "🇬🇧 Английский",
+                    fr: "🇫🇷 Французский",
+                    zh: "🇨🇳 Китайский",
+                    ru: "🇷🇺 Русский",
+                    ar: "🇸🇦 Арабский"
+                }
             },
             ar: {
                 title: "مرحبًا بك في SocklessCoin 🧦",
                 subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
-                suspectBtn: "اكتشاف مشتبه به محتمل",
-                donationText: "ادعمني في هذه الحرب",
-                donateBtn: "Donate Solana"
+                btnFind: "ابحث عن جورب",
+                btnBot: "جرب روبوت Telegram",
+                lang: {
+                    en: "🇬🇧 الإنجليزية",
+                    fr: "🇫🇷 الفرنسية",
+                    zh: "🇨🇳 الصينية",
+                    ru: "🇷🇺 الروسية",
+                    ar: "🇸🇦 العربية"
+                }
             }
         };
 
-        function changeLanguage(lang) {
-            document.getElementById("title").textContent = translations[lang].title;
-            document.getElementById("subtitle").textContent = translations[lang].subtitle;
-            document.getElementById("suspectButton").textContent = translations[lang].suspectBtn;
-            document.getElementById("donationText").textContent = translations[lang].donationText;
-            document.querySelector(".sock-button").textContent = translations[lang].donateBtn;
+        function changeLanguage(language) {
+            const lang = translations[language];
+
+            document.getElementById("title").textContent = lang.title;
+            document.getElementById("subtitle").textContent = lang.subtitle;
+            document.querySelector("button").textContent = lang.btnFind;
+            document.querySelector("a").textContent = lang.btnBot;
+
+            // Met à jour les options de la sélection de la langue
+            const options = document.getElementById("languageSelect").options;
+            for (let i = 0; i < options.length; i++) {
+                options[i].text = lang.lang[options[i].value];
+            }
         }
 
-        // Toggle the donation content on button click
-        document.getElementById("suspectButton").addEventListener("click", function() {
-            const donationContent = document.getElementById("donationContent");
-            if (donationContent.style.display === "none" || donationContent.style.display === "") {
-                donationContent.style.display = "block";
-            } else {
-                donationContent.style.display = "none";
-            }
-        });
+        function openLightbox(sockId) {
+            const imageSrc = document.getElementById(sockId).src;
+            document.getElementById("lightboxImage").src = imageSrc;
+            document.getElementById("lightbox").style.display = "flex";
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
     </script>
 
 </body>
