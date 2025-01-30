@@ -82,6 +82,54 @@
     }
 </style>
 
+    <style>
+    /* Transition fluide pour le bouton */
+    button {
+        transition: all 0.3s ease-in-out;
+    }
+
+    button:hover {
+        background-color: #f97316; /* Couleur de fond plus sombre au survol */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+        transform: scale(1.05); /* Agrandissement léger */
+    }
+
+    /* Animation de fade-in pour le titre */
+    #title {
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Définir l'animation fadeIn */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Autres améliorations esthétiques */
+    .content-box {
+        background: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        margin-top: 20px;
+        transition: box-shadow 0.3s ease-in-out; /* Transition de l'ombre */
+    }
+
+    .content-box:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
+    }
+</style>
+
+
 <script>
     // Lost Socks Images
     const socks = ["sockImage1", "sockImage2", "sockImage3"];
