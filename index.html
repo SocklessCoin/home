@@ -200,9 +200,10 @@
 
 
     
-<!-- Polyfill pour Buffer -->
+<!-- Assurez-vous que ce script est chargé avant @solana/web3.js -->
 <script type="module">
   import { Buffer } from "https://cdn.skypack.dev/buffer";
+  window.Buffer = Buffer;
 </script>
 
 <!-- Chargement de Solana Web3.js -->
@@ -220,12 +221,14 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        if (typeof solanaWeb3 === 'undefined') {
-            console.error('Solana Web3 n\'est pas chargé.');
-        } else {
-            console.log('Solana Web3.js chargé avec succès.');
-        }
-    });
+    if (typeof solanaWeb3 === 'undefined') {
+        console.error('Solana Web3 n\'est pas chargé.');
+    } else if (typeof Buffer === 'undefined') {
+        console.error('Buffer n\'est pas défini. Assurez-vous que le polyfill est chargé correctement.');
+    } else {
+        console.log('Solana Web3.js et Buffer chargés avec succès.');
+    }
+});
 
     async function sendDonation(amount) {
         console.log("Montant de la donation :", amount);
