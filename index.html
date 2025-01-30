@@ -132,8 +132,10 @@
         }
 
         .donation-box button {
-            margin-top: 10px;
-        }
+    margin-top: 10px;
+    min-width: 100px; /* Assurez-vous que le bouton a une taille minimale */
+    font-size: 1rem; /* Assurez-vous que la taille de la police est suffisante */
+}
 
         .version {
             font-size: 1rem;
@@ -196,9 +198,10 @@
         }
 
         .question-answer p {
-            font-size: 0.9em;
-            color: #666;
-        }
+    font-size: 0.9em;
+    color: #666;
+    text-align: left; /* Ajoutez cette ligne */
+}
 
         /* Animation pour le déploiement */
         .faq-item.active .question-answer {
@@ -655,7 +658,7 @@
     });
 
     // Afficher une chaussette au chargement de la page
-    showSock();
+    // showSock();
 
     // Ajouter l'écouteur d'événement pour les images de chaussettes
     document.querySelectorAll('.sock-images img').forEach(img => {
