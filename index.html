@@ -1,105 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- ... (début du code inchangé) ... -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocklessCoin - The Sock Revolution</title>
+    <style>
+        body {
+            background: radial-gradient(circle, rgba(160, 160, 160, 0.7) 10%, rgba(130, 130, 130, 0.5) 40%, rgba(150, 150, 150, 0.7) 60%);
+            background-size: 50px 50px;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
 
-<style>
-    /* ... (styles précédents inchangés) ... */
+        .content-box {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            height: auto;
+            justify-content: space-between;
+            color: #333;
+            margin-bottom: 20px;
+        }
 
-    /* Style pour le point d'interrogation */
-    .question-mark {
-        font-size: 120px;
-        color: #ff7f00;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 200px;
-        height: 200px;
-        margin: auto;
-        opacity: 1;
-        transition: opacity 0.5s ease;
-        font-weight: bold;
-    }
+        .content-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-    /* Modification du style des images */
-    .sock-images {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        min-height: 200px; /* Hauteur minimale pour éviter le saut de mise en page */
-    }
+        .sock-images {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 300px;
+        }
 
-    .sock-images img {
-        width: 200px;
-        height: auto;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        opacity: 0;
-        display: none;
-        position: absolute; /* Position absolue pour superposer au point d'interrogation */
-        transition: opacity 0.5s ease;
-    }
-</style>
+        /* Style pour le point d'interrogation */
+        .question-mark {
+            font-size: 120px;
+            color: #ff7f00;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            font-weight: bold;
+            z-index: 1;
+        }
 
-<!-- ... (reste du code inchangé jusqu'à la div sock-images) ... -->
+        .sock-images img {
+            width: 200px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            opacity: 0;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.5s ease;
+        }
 
-    <div class="sock-images">
-        <div id="questionMark" class="question-mark">?</div>
-        <img id="sockImage1" src="machine.jpg" alt="Sock image 1" onclick="openLightbox('sockImage1')">
-        <img id="sockImage2" src="sofa.jpg" alt="Sock image 2" onclick="openLightbox('sockImage2')">
-        <img id="sockImage3" src="underbed.jpg" alt="Sock image 3" onclick="openLightbox('sockImage3')">
+        h1, p {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            max-width: 100%;
+            margin: 10px 0;
+        }
+
+        select, button {
+            font-size: 1rem;
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #ff7f00;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e67000;
+        }
+
+        .language-select {
+            background-color: #f3f3f3;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .telegram-link {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            text-decoration: none;
+            color: #1e90ff;
+            font-size: 1.1rem;
+            padding: 10px;
+            border: 2px solid #1e90ff;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            max-width: 300px;
+        }
+
+        .telegram-link:hover {
+            background-color: #1e90ff;
+            color: white;
+        }
+
+        .version {
+            font-size: 1rem;
+            color: #777;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .donation-box {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .donation-box input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .content-box {
+                flex-direction: column;
+                align-items: center;
+            }
+            .sock-images {
+                margin-top: 1rem;
+                min-height: 200px;
+            }
+            .sock-images img {
+                width: 150px;
+            }
+            h1, p {
+                font-size: 1rem;
+            }
+            select, button {
+                font-size: 0.9rem;
+                width: auto;
+            }
+            .question-mark {
+                font-size: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-box">
+        <div class="content-left">
+            <h1 id="title">Welcome to SocklessCoin 🧦</h1>
+            <p id="subtitle">Where do lost socks go? We might have the answer...</p>
+
+            <button onclick="showSock()" id="findButton">Find a Sock</button>
+
+            <div class="mt-5">
+                <select id="languageSelect" class="language-select" onchange="changeLanguage(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="zh">🇨🇳 中文</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="sock-images">
+            <div id="questionMark" class="question-mark">?</div>
+            <img id="sockImage1" src="machine.jpg" alt="Sock image 1" onclick="openLightbox('sockImage1')">
+            <img id="sockImage2" src="sofa.jpg" alt="Sock image 2" onclick="openLightbox('sockImage2')">
+            <img id="sockImage3" src="underbed.jpg" alt="Sock image 3" onclick="openLightbox('sockImage3')">
+        </div>
     </div>
 
-<!-- ... (reste du code HTML inchangé) ... -->
+    <a href="https://t.me/YOUR_BOT" target="_blank" class="telegram-link" id="telegramButton">Try the Telegram Bot</a>
 
-<script>
-    // ... (début du code JavaScript inchangé) ...
+    <div class="donation-box">
+        <p id="donationText">Please support me so my wife stops leaving her socks everywhere.</p>
+        <input type="number" id="donationAmount" placeholder="Enter amount in SOL" step="0.1" min="0">
+        <button id="sendDonationButton" onclick="sendDonation()">Send Support</button>
+    </div>
 
-    // Modification de la fonction showSock
-    function showSock() {
-        // Masque le point d'interrogation avec une transition
-        const questionMark = document.getElementById('questionMark');
-        questionMark.style.opacity = '0';
-        
-        // Cache toutes les images d'abord
-        socks.forEach(sock => {
-            const img = document.getElementById(sock);
-            img.style.display = "none";
-            img.style.opacity = "0";
-        });
+    <div class="version">Version 1.0</div>
 
-        // Sélectionne une image aléatoire
-        const randomSock = socks[Math.floor(Math.random() * socks.length)];
-        const selectedImg = document.getElementById(randomSock);
-        
-        // Attend que le point d'interrogation soit masqué
-        setTimeout(() => {
-            questionMark.style.display = 'none';
-            // Affiche l'image sélectionnée avec une animation
-            selectedImg.style.display = "block";
+    <script>
+        const socks = ["sockImage1", "sockImage2", "sockImage3"];
+
+        function showSock() {
+            // Masque le point d'interrogation avec une transition
+            const questionMark = document.getElementById('questionMark');
+            questionMark.style.opacity = '0';
+            
+            // Cache toutes les images d'abord
+            socks.forEach(sock => {
+                const img = document.getElementById(sock);
+                img.style.display = "none";
+                img.style.opacity = "0";
+            });
+
+            // Sélectionne une image aléatoire
+            const randomSock = socks[Math.floor(Math.random() * socks.length)];
+            const selectedImg = document.getElementById(randomSock);
+            
+            // Attend que le point d'interrogation soit masqué
             setTimeout(() => {
-                selectedImg.style.opacity = "1";
-            }, 100);
-        }, 500);
-    }
+                questionMark.style.display = 'none';
+                // Affiche l'image sélectionnée avec une animation
+                selectedImg.style.display = "block";
+                setTimeout(() => {
+                    selectedImg.style.opacity = "1";
+                }, 100);
+            }, 500);
+        }
 
-    // Modification du comportement au chargement de la page
-    window.onload = function() {
-        // Cache toutes les images
-        socks.forEach(sock => {
-            const img = document.getElementById(sock);
-            img.style.display = "none";
-            img.style.opacity = "0";
-        });
-        
-        // Affiche le point d'interrogation
-        const questionMark = document.getElementById('questionMark');
-        questionMark.style.display = 'flex';
-        questionMark.style.opacity = '1';
-    };
+        // Au chargement de la page
+        window.onload = function() {
+            // Cache toutes les images
+            socks.forEach(sock => {
+                const img = document.getElementById(sock);
+                img.style.display = "none";
+                img.style.opacity = "0";
+            });
+            
+            // Affiche le point d'interrogation
+            const questionMark = document.getElementById('questionMark');
+            questionMark.style.display = 'block';
+            questionMark.style.opacity = '1';
+        };
 
-    // ... (reste du code JavaScript inchangé) ...
-</script>
+        // Reste du code JavaScript (translations, etc.) ...
+        // [Insérez ici le reste de votre code JavaScript pour les traductions et les donations]
+    </script>
+</body>
 </html>
