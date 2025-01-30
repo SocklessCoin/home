@@ -202,7 +202,7 @@
 
     <!-- Bouton de soutien avec champ de montant -->
 <div id="supportMessage">
-    <p>S'il vous plaît, soutenez-moi pour que ma femme arrête de mettre ses chaussettes partout.</p>
+    <p>S'il vous plaît, donnez-moi de la force pour que ma femme arrête de mettre ses chaussettes partout.</p>
     <input type="number" id="donationAmount" placeholder="Entrez le montant en SOL" />
     <button id="sendDonationButton">Envoyer le soutien</button>
 </div>
@@ -210,50 +210,53 @@
     <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.38.0/dist/web3.min.js"></script>
 
 <script>
-    document.getElementById('sendDonationButton').onclick = function() {
-        const amount = document.getElementById('donationAmount').value;
-        if (amount && amount > 0) {
-            // Appel de la fonction d'envoi de donation Solana
-            sendDonation(amount);
-        } else {
+    document.getElementById('sendDonationButton').onclick = async function() {
+        const amount = parseFloat(document.getElementById('donationAmount').value);
+        if (isNaN(amount) || amount <= 0) {
             alert('Veuillez entrer un montant valide.');
+            return;
         }
+        await sendDonation(amount);
     };
 
     async function sendDonation(amount) {
         try {
-            // Vérifie si le portefeuille Solana est connecté (Phantom par exemple)
-            const payer = window.solana;
-            if (!payer) {
-                alert("Veuillez connecter votre portefeuille Solana.");
+            // Vérifie si Phantom Wallet est installé
+            if (!window.solana || !window.solana.isPhantom) {
+                alert("Veuillez installer et connecter votre portefeuille Phantom.");
                 return;
             }
 
-            // Obtenir la clé publique de l'utilisateur
-            const payerPublicKey = payer.publicKey.toString();
-            console.log("Clé publique de l'utilisateur :", payerPublicKey);
+            // Demande à l'utilisateur de se connecter s'il ne l'est pas
+            const response = await window.solana.connect();
+            const payerPublicKey = response.publicKey;
+            console.log("Clé publique du donateur :", payerPublicKey.toString());
 
             const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+            const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc"); // Remplace par ton adresse
 
-            const recipient = "TonAdresseSolanaIci"; // Remplace par l'adresse de destination
+            // Création de la transaction
             const transaction = new solanaWeb3.Transaction().add(
                 solanaWeb3.SystemProgram.transfer({
-                    fromPubkey: payer.publicKey,
-                    toPubkey: new solanaWeb3.PublicKey(recipient),
-                    lamports: solanaWeb3.LAMPORTS_PER_SOL * amount // Conversion du montant SOL en lamports
+                    fromPubkey: payerPublicKey,
+                    toPubkey: recipient,
+                    lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
                 })
             );
 
-            // Envoyer et confirmer la transaction
-            const signature = await solanaWeb3.sendAndConfirmTransaction(connection, transaction, [payer]);
+            // Signer et envoyer la transaction
+            const { signature } = await window.solana.signAndSendTransaction(transaction);
+            await connection.confirmTransaction(signature, 'confirmed');
 
-            alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
+            alert('Merci pour votre soutien ! Transaction réussie : ' + signature);
+            console.log("Transaction confirmée :", signature);
         } catch (err) {
-            console.error('Erreur lors de l\'envoi de la donation : ', err);
+            console.error("Erreur lors de l'envoi de la donation :", err);
             alert('Une erreur est survenue. Veuillez réessayer.');
         }
     }
 </script>
+
 
     
     <script>
