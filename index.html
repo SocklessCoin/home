@@ -146,6 +146,7 @@
     .lightbox img {
         max-width: 90%;
         max-height: 80%;
+        border-radius: 15px; /* Coins arrondis pour l'image en grand */
     }
 
     </style>
@@ -192,6 +193,14 @@
     <script>
         // Lost Socks Images
         const socks = ["sockImage1", "sockImage2", "sockImage3"];
+
+        // Cache toutes les images et affiche une seule image de manière aléatoire au chargement de la page
+        window.onload = function() {
+            socks.forEach(sock => {
+                document.getElementById(sock).style.display = "none";
+            });
+            showSock(); // Affiche une image aléatoire
+        };
 
         function showSock() {
             socks.forEach(sock => {
