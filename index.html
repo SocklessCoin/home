@@ -37,14 +37,15 @@
         height: auto;
         border-radius: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: none; /* Assurez-vous que l'image soit cachée au départ */
+        cursor: pointer;
     }
 
     /* Modifications des titres */
     h1, p {
         text-align: left;
-        font-size: 1.5rem; /* Ajuster la taille de la police */
+        font-size: 1.2rem; /* Ajustée pour être plus petite */
         line-height: 1.4;
+        max-width: 50%; /* Limité à la moitié du rectangle */
     }
 
     /* Réduire la taille des éléments réactifs */
@@ -128,6 +129,25 @@
         margin-top: 20px;
     }
 
+    /* Style de la lightbox */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox img {
+        max-width: 90%;
+        max-height: 80%;
+    }
+
     </style>
 </head>
 <body>
@@ -153,9 +173,9 @@
 
         <!-- Zone droite avec les images de chaussettes -->
         <div class="sock-images">
-            <img id="sockImage1" src="machine.jpg" alt="Sock image 1">
-            <img id="sockImage2" src="sofa.jpg" alt="Sock image 2">
-            <img id="sockImage3" src="underbed.jpg" alt="Sock image 3">
+            <img id="sockImage1" src="machine.jpg" alt="Sock image 1" onclick="openLightbox('sockImage1')">
+            <img id="sockImage2" src="sofa.jpg" alt="Sock image 2" onclick="openLightbox('sockImage2')">
+            <img id="sockImage3" src="underbed.jpg" alt="Sock image 3" onclick="openLightbox('sockImage3')">
         </div>
     </div>
 
@@ -163,6 +183,11 @@
     <a href="https://t.me/YOUR_BOT" target="_blank">Try the Telegram Bot</a>
 
     <div class="version">Version 1.0</div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImage" src="" alt="Zoomed Image">
+    </div>
 
     <script>
         // Lost Socks Images
@@ -215,6 +240,19 @@
             document.getElementById("subtitle").textContent = translations[lang].subtitle;
             document.querySelector("button").textContent = translations[lang].btnFind;
             document.querySelector("a").textContent = translations[lang].btnBot;
+        }
+
+        // Lightbox functions
+        function openLightbox(id) {
+            var img = document.getElementById(id);
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = img.src;
+            lightbox.style.display = "flex";
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = "none";
         }
     </script>
 
