@@ -213,10 +213,12 @@
 
     <!-- Nouveau rectangle de don -->
     <div class="donation-box">
-        <p id="donationText">Please support me so my wife stops leaving her socks everywhere.</p>
-        <input type="number" id="donationAmount" placeholder="Enter amount in SOL" step="0.1" min="0">
-        <button id="sendDonationButton" onclick="sendDonation()">Send Support</button>
-    </div>
+    <p id="donationText"></p>
+    <form id="donationForm">
+        <input type="number" id="donationAmount" placeholder="" step="0.1" min="0">
+        <button type="submit" id="sendDonationButton"></button>
+    </form>
+</div>
 
     <div class="version">Version 1.0</div>
 
@@ -445,6 +447,12 @@
         document.getElementById("sendDonationButton").addEventListener("click", async function() {
             await sendDonation();
         });
+
+// Ajout de l'événement pour le formulaire
+document.getElementById("donationForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // Empêcher le rechargement de la page
+    await sendDonation();
+});
     });
 </script>
 
