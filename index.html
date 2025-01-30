@@ -491,23 +491,41 @@
     }
 
     function changeLanguage(language) {
-        const lang = translations[language];
-        localStorage.setItem('currentLanguage', language);
-        
-        document.getElementById("title").textContent = lang.title;
-        document.getElementById("subtitle").textContent = lang.subtitle;
-        document.getElementById("findButton").textContent = lang.findButton;
-        document.getElementById("telegramButton").textContent = lang.telegramButton;
-        document.getElementById("donationText").textContent = lang.donationText;
-        document.getElementById("donationAmount").placeholder = lang.donationPlaceholder;
-        document.getElementById("sendDonationButton").textContent = lang.sendDonation;
-        document.getElementById("faqTitle").textContent = lang.faqTitle || 'Frequently Asked Questions';
-        document.getElementById("additionalQuestions").textContent = lang.additionalQuestions;
-        for (let i = 1; i <= 6; i++) {
-            document.getElementById(`question${i}`).textContent = lang[`question${i}`];
-            document.getElementById(`answer${i}`).textContent = lang[`answer${i}`];
+    const lang = translations[language];
+    localStorage.setItem('currentLanguage', language);
+
+    const elementsToUpdate = [
+        { id: "title", property: "textContent" },
+        { id: "subtitle", property: "textContent" },
+        { id: "findButton", property: "textContent" },
+        { id: "telegramButton", property: "textContent" },
+        { id: "donationText", property: "textContent" },
+        { id: "donationAmount", property: "placeholder" },
+        { id: "sendDonationButton", property: "textContent" },
+        { id: "faqTitle", property: "textContent" },
+        { id: "additionalQuestions", property: "textContent" }
+    ];
+
+    elementsToUpdate.forEach(elem => {
+        const element = document.getElementById(elem.id);
+        if (element) {
+            element[elem.property] = lang[elem.id] || '';
+        } else {
+            console.warn(`Element with id '${elem.id}' not found.`);
+        }
+    });
+
+    for (let i = 1; i <= 6; i++) {
+        const question = document.getElementById(`question${i}`);
+        const answer = document.getElementById(`answer${i}`);
+        if (question && answer) {
+            question.textContent = lang[`question${i}`];
+            answer.textContent = lang[`answer${i}`];
+        } else {
+            console.warn(`Element with id 'question${i}' or 'answer${i}' not found.`);
         }
     }
+}
 
     function openLightbox(sockId) {
         const imageSrc = document.getElementById(sockId).src;
