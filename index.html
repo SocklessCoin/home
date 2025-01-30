@@ -3,16 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocklessCoin</title>
+    <title>SocklessCoin - La Révolution des Chaussettes</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        button { padding: 10px 20px; font-size: 18px; cursor: pointer; }
-        img { margin-top: 20px; max-width: 300px; }
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff5733;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #ff5733;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #d44124;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 300px;
+            display: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
     <h1>Bienvenue sur SocklessCoin</h1>
-    <p>La révolution des chaussettes perdues commence ici.</p>
+    <p>Où vont les chaussettes perdues ? Nous avons peut-être une réponse...</p>
     <button onclick="showSock()">Trouver une chaussette</button>
     <br>
     <img id="sockImage" src="" alt="Une chaussette perdue apparaîtra ici">
@@ -27,6 +57,7 @@
         function showSock() {
             const img = document.getElementById("sockImage");
             img.src = socks[Math.floor(Math.random() * socks.length)];
+            img.style.display = "block";
         }
     </script>
 </body>
