@@ -21,6 +21,7 @@
         display: flex;
         flex-direction: row;
         gap: 2rem;
+        height: auto; /* Hauteur automatique pour plus de flexibilité */
     }
 
     /* Images alignées à droite, avec largeur ajustée */
@@ -149,13 +150,21 @@
         border-radius: 15px; /* Coins arrondis pour l'image en grand */
     }
 
+    /* Alignement du contenu à gauche pour le texte et les boutons */
+    .content-left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Centrer à gauche */
+        width: 100%;
+    }
+
     </style>
 </head>
 <body>
 
     <div class="content-box">
         <!-- Zone gauche avec texte, bouton -->
-        <div class="flex flex-col items-start w-full">
+        <div class="content-left">
             <h1 id="title">Welcome to SocklessCoin 🧦</h1>
             <p id="subtitle">Where do lost socks go? We might have the answer...</p>
 
