@@ -255,31 +255,40 @@
             }
         }
 
-        try {
-            const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
-            const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc"); // Remplacez par votre adresse réelle
+        async function sendDonation(amount) {
+    // ... (votre code existant jusqu'à la création de la transaction)
 
-            const transaction = new solanaWeb3.Transaction().add(
-                solanaWeb3.SystemProgram.transfer({
-                    fromPubkey: fromPubKey,
-                    toPubkey: recipient,
-                    lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
-                })
-            );
+    try {
+        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+        const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc"); // Remplacez par votre adresse réelle
 
-            const signature = await window.solana.signAndSendTransaction(transaction);
-            console.log("Transaction signature:", signature);
-            alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
+        // Obtention du recentBlockhash
+        let { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
 
-        } catch (err) {
-            console.error('Erreur lors de l\'envoi de la donation : ', err);
-            if (err.message.includes('insufficient funds')) {
-                alert('Fonds insuffisants pour compléter la transaction.');
-            } else {
-                alert('Une erreur est survenue. Veuillez réessayer.');
-            }
+        const transaction = new solanaWeb3.Transaction({
+            recentBlockhash: blockhash,
+            feePayer: fromPubKey, // L'envoyeur doit payer les frais
+        }).add(
+            solanaWeb3.SystemProgram.transfer({
+                fromPubkey: fromPubKey,
+                toPubkey: recipient,
+                lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
+            })
+        );
+
+        const signature = await window.solana.signAndSendTransaction(transaction);
+        console.log("Transaction signature:", signature);
+        alert('Merci pour votre soutien ! Transaction réussie avec signature : ' + signature);
+
+    } catch (err) {
+        console.error('Erreur lors de l\'envoi de la donation : ', err);
+        if (err.message.includes('insufficient funds')) {
+            alert('Fonds insuffisants pour compléter la transaction.');
+        } else {
+            alert('Une erreur est survenue. Veuillez réessayer.');
         }
     }
+}
 
     document.getElementById("sendDonationButton").addEventListener("click", function() {
         const donationAmount = parseFloat(document.getElementById('donationAmount').value);
