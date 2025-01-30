@@ -266,29 +266,50 @@
     </div>
     <!-- Rectangle de FAQ -->
     <div class="faq-box">
-        <h2 id="faqTitle">Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-            <div class="question-answer">
-                <h3>What is SocklessCoin?</h3>
-                <p>SocklessCoin is a humorous token project where we explore the mysterious journey of lost socks.</p>
-            </div>
-        </div>
-        <div class="faq-item">
-            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-            <div class="question-answer">
-                <h3>How can I donate?</h3>
-                <p>You can donate by entering an amount in SOL in the donation box above and clicking "Send Support".</p>
-            </div>
-        </div>
-        <div class="faq-item">
-            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-            <div class="question-answer">
-                <h3>What happens to my donation?</h3>
-                <p>Your donation supports the project and helps fund the search for lost socks around the world!</p>
-            </div>
+    <h2 id="additionalQuestions">Questions supplémentaires</h2>
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3 id="question1">Question 1: (Étape prélancement) Pourquoi il y a un gros pourcentage dans les holders ?</h3>
+            <p id="answer1">Le gros pourcentage que vous voyez dans les holders, c'est parce que la majorité de la supply est détenue par l'équipe pour être distribuée progressivement. Pensez-y comme à une réserve de chaussettes : au début, elles sont toutes dans le tiroir, mais plus vous les portez, plus le tiroir se vide. Chaque achat fait sortir un peu plus de tokens de cette réserve, les mettant entre vos mains... ou plutôt, dans votre wallet.</p>
         </div>
     </div>
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3 id="question2">Question 2: C'est un scam !</h3>
+            <p id="answer2">C'est toi le scam ! Si vous avez pris le temps de lire jusqu'ici, vous devriez savoir que la liquidité de Meteora est verrouillée à vie - c'est comme une chaussette coincée derrière la machine à laver, elle n'ira nulle part. Donc, pas de risque de RUG pull ici. Détendez-vous et profitez du voyage avec nous.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3 id="question3">Question 3: Tu vas gagner plein d'argent !</h3>
+            <p id="answer3">Désolé de décevoir, mais je ne suis pas en route pour devenir le prochain magnat des chaussettes. Les plateformes comme Moonshot et Pump.fun gardent le contrôle du contrat intelligent, et je ne peux pas toucher à la supply limitée à 1 milliard de tokens. Mon unique source de richesse potentielle ? Vos cadeaux de SOL généreux sur ce site. C'est du bénévolat, mais avec un peu d'espoir et beaucoup d'humour.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3 id="question4">Question 4: Quels sont les projets ensuite ?</h3>
+            <p id="answer4">Mon rêve ? Être listé sur un CEX. Mais au-delà de ça, j'ai envie de développer ce site conçu avec mes petites mains (pas de critique de mon code OK [lol]). Et pourquoi pas créer un jeu sur Telegram ? Oui, c'est très compliqué. Mais hey, qui n'aime pas un bon défi ? Plein de projets en perspective, si vous me donnez la chance de les réaliser.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3 id="question5">Question 5: Qui cachent les chaussettes le plus ?</h3>
+            <p id="answer5">Sans aucun doute, ma femme. Elle a le don de les mettre partout. Elles réapparaissent dans les endroits les plus inattendus : sous le canapé, derrière le frigo, dans le tiroir à couverts... Mon robot aspirateur en fait des cauchemars. C'est une véritable chasse au trésor à chaque fois qu'elle cherche une paire !</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
+        <div class="question-answer">
+            <h3 id="question6">Question 6 : Tu fais quoi à côté de tout ça ?</h3>
+            <p id="answer6">Plein de choses ! Je suis étudiant dans un Master en Santé publique (je finis en septembre si vous voulez m'envoyer des félicitations). Je suis également salarié dans une association de professionnels de santé. Je fais des vidéos sur Youtube avec des tutos sur la crypto (cherchez "Les Occaz à Séb"). Je suis également sur Twitch où je fais quelques lives mais c'est pas très populaire.</p>
+        </div>
+    </div>
+</div>
     <div class="version">Version 1.0</div>
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <img id="lightboxImage" src="" alt="Zoomed Image">
@@ -317,7 +338,20 @@
                 userRejected: "The transaction was canceled by the user.",
                 genericError: "An error occurred. Please try again.",
                 success: "Thank you for your support! Transaction successful with signature: ",
-                faqTitle: "Frequently Asked Questions"
+                faqTitle: "Frequently Asked Questions",
+                additionalQuestions: "Additional Questions",
+            question1: "Question 1: (Pre-launch) Why is there such a high percentage in holders?",
+            answer1: "The high percentage you see among holders is because the majority of the supply is held by the team to be distributed gradually. Think of it like a sock drawer: at first, all the socks are in there, but the more you wear them, the more the drawer empties. Each purchase takes a few more tokens out of this reserve, putting them into your hands... or rather, into your wallet.",
+            question2: "Question 2: It's a scam!",
+            answer2: "You're the scam! If you've taken the time to read up to here, you should know that Meteora's liquidity is locked for life - it's like a sock stuck behind the washing machine, it's not going anywhere. So, no risk of a RUG pull here. Relax and enjoy the ride with us.",
+            question3: "Question 3: You're going to make a lot of money!",
+            answer3: "Sorry to disappoint, but I'm not on my way to becoming the next sock tycoon. Platforms like Moonshot and Pump.fun keep control of the smart contract, and I can't touch the supply limited to 1 billion tokens. My only potential source of wealth? Your generous SOL donations on this site. It's volunteer work, but with a bit of hope and a lot of humor.",
+            question4: "Question 4: What are the future projects?",
+            answer4: "My dream? To be listed on a CEX. But beyond that, I want to develop this site, crafted with my own two hands (no code criticism, OK [lol]). And why not create a game on Telegram? Yes, it's very complicated. But hey, who doesn't love a good challenge? Plenty of projects ahead if you give me the chance to make them happen.",
+            question5: "Question 5: Who hides the most socks?",
+            answer5: "Without a doubt, my wife. She has a knack for leaving them everywhere. They reappear in the most unexpected places: under the couch, behind the fridge, in the cutlery drawer... My robot vacuum has nightmares about it. It's a real treasure hunt every time she looks for a pair!",
+            question6: "Question 6: What do you do besides all this?",
+            answer6: "Lots of things! I'm a student in a Master's program in Public Health (I finish in September if you want to send congratulations). I'm also employed by a health professionals' association. I make videos on YouTube with crypto tutorials (search for 'Les Occaz à Séb'). I'm also on Twitch where I do some live streams, but it's not very popular."
             },
             fr: {
                 title: "Bienvenue sur SocklessCoin 🧦",
@@ -333,8 +367,21 @@
                 userRejected: "La transaction a été annulée par l'utilisateur.",
                 genericError: "Une erreur est survenue. Veuillez réessayer.",
                 success: "Merci pour votre soutien ! Transaction réussie avec signature : ",
-                faqTitle: "Questions Fréquemment Posées"
-            },
+                faqTitle: "Questions Fréquemment Posées",
+                additionalQuestions: "Questions supplémentaires",
+            question1: "Question 1: (Étape prélancement) Pourquoi il y a un gros pourcentage dans les holders ?",
+            answer1: "Le gros pourcentage que vous voyez dans les holders, c'est parce que la majorité de la supply est détenue par l'équipe pour être distribuée progressivement. Pensez-y comme à une réserve de chaussettes : au début, elles sont toutes dans le tiroir, mais plus vous les portez, plus le tiroir se vide. Chaque achat fait sortir un peu plus de tokens de cette réserve, les mettant entre vos mains... ou plutôt, dans votre wallet.",
+            question2: "Question 2: C'est un scam !",
+            answer2: "C'est toi le scam ! Si vous avez pris le temps de lire jusqu'ici, vous devriez savoir que la liquidité de Meteora est verrouillée à vie - c'est comme une chaussette coincée derrière la machine à laver, elle n'ira nulle part. Donc, pas de risque de RUG pull ici. Détendez-vous et profitez du voyage avec nous.",
+            question3: "Question 3: Tu vas gagner plein d'argent !",
+            answer3: "Désolé de décevoir, mais je ne suis pas en route pour devenir le prochain magnat des chaussettes. Les plateformes comme Moonshot et Pump.fun gardent le contrôle du contrat intelligent, et je ne peux pas toucher à la supply limitée à 1 milliard de tokens. Mon unique source de richesse potentielle ? Vos cadeaux de SOL généreux sur ce site. C'est du bénévolat, mais avec un peu d'espoir et beaucoup d'humour.",
+            question4: "Question 4: Quels sont les projets ensuite ?",
+            answer4: "Mon rêve ? Être listé sur un CEX. Mais au-delà de ça, j'ai envie de développer ce site conçu avec mes petites mains (pas de critique de mon code OK [lol]). Et pourquoi pas créer un jeu sur Telegram ? Oui, c'est très compliqué. Mais hey, qui n'aime pas un bon défi ? Plein de projets en perspective, si vous me donnez la chance de les réaliser.",
+            question5: "Question 5: Qui cachent les chaussettes le plus ?",
+            answer5: "Sans aucun doute, ma femme. Elle a le don de les mettre partout. Elles réapparaissent dans les endroits les plus inattendus : sous le canapé, derrière le frigo, dans le tiroir à couverts... Mon robot aspirateur en fait des cauchemars. C'est une véritable chasse au trésor à chaque fois qu'elle cherche une paire !",
+            question6: "Question 6 : Tu fais quoi à côté de tout ça ?",
+            answer6: "Plein de choses ! Je suis étudiant dans un Master en Santé publique (je finis en septembre si vous voulez m'envoyer des félicitations). Je suis également salarié dans une association de professionnels de santé. Je fais des vidéos sur Youtube avec des tutos sur la crypto (cherchez 'Les Occaz à Séb'). Je suis également sur Twitch où je fais quelques lives mais c'est pas très populaire."
+                 },
             // Ajoutez les traductions pour les autres langues similaires
             zh: {
                 title: "欢迎来到 SocklessCoin 🧦",
@@ -350,8 +397,21 @@
                 userRejected: "交易被用户取消。",
                 genericError: "发生错误。请重试。",
                 success: "感谢您的支持！交易成功，签名：",
-                faqTitle: "常见问题"
-            },
+                faqTitle: "常见问题",
+                additionalQuestions: "附加问题",
+            question1: "问题1：（预发布）为什么持有者中有这么高比例？",
+            answer1: "您在持有者中看到的高比例是因为团队持有大部分供应量以逐步分发。想象一下这就像一个袜子抽屉：一开始所有的袜子都在里面，但你穿得越多，抽屉就越空。每次购买都会从这个储备中取出一些代币，放进你的手中……或者更准确地说，放进你的钱包。",
+            question2: "问题2：这是一个骗局！",
+            answer2: "你才是骗子！如果你已经花时间读到这里，你应该知道 Meteora 的流动性是永久锁定的 - 就像一只袜子卡在洗衣机后面，它哪儿也去不了。所以，这里没有拉地毯的风险。放松心情，和我们一起享受这段旅程。",
+            question3: "问题3：你会赚大钱！",
+            answer3: "抱歉让大家失望了，但我并不是在走向成为下一个袜子大亨的路。像 Moonshot 和 Pump.fun 这样的平台控制着智能合约，我无法触及限量10亿代币的供应。我唯一的潜在财富来源？你们在此网站上慷慨的SOL捐赠。这是一项志愿工作，但带着一些希望和很多幽默。",
+            question4: "问题4：未来的项目是什么？",
+            answer4: "我的梦想？在 CEX 上上市。但除此之外，我想发展这个用我自己的双手构建的网站（不要批评我的代码，OK [笑]）。为什么不创建一个电报游戏呢？是的，这很复杂。但嘿，谁不喜欢一个好挑战呢？如果给我机会，我有很多项目要实现。",
+            question5: "问题5：谁最爱藏袜子？",
+            answer5: "毫无疑问，我的妻子。她有本领把袜子放在任何地方。它们会在最意想不到的地方重现：沙发下面，冰箱后面，餐具抽屉里……我的扫地机器人因此做噩梦。每当她找一双袜子时，这真是一场寻宝游戏！",
+            question6: "问题6：除了这些，你还做什么？",
+            answer6: "很多事情！我在公共卫生硕士项目中学习（如果你们想送祝贺，我会在九月完成）。我还在一个健康专业人士协会工作。我在YouTube上制作有关加密货币的教程视频（搜索'Les Occaz à Séb'）。我也在Twitch上做一些直播，不过并不是很受欢迎。"
+        },
             ru: {
                 title: "Добро пожаловать в SocklessCoin 🧦",
                 subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
@@ -366,8 +426,21 @@
                 userRejected: "Транзакция отклонена пользователем.",
                 genericError: "Произошла ошибка. Пожалуйста, попробуйте снова.",
                 success: "Спасибо за вашу поддержку! Транзакция успешно завершена с подписью: ",
-                faqTitle: "Часто задаваемые вопросы"
-            },
+                faqTitle: "Часто задаваемые вопросы",
+                additionalQuestions: "Дополнительные вопросы",
+            question1: "Вопрос 1: (Долистинг) Почему такой высокий процент у держателей?",
+            answer1: "Большой процент, который вы видите у держателей, объясняется тем, что большая часть запасов удерживается командой для постепенного распределения. Думайте об этом как о ящике с носками: вначале все носки там, но чем больше вы их носите, тем больше ящик опустошается. Каждый новый покупаемый токен вытаскивает немного из этого резерва, помещая их в ваши руки... или скорее, в ваш кошелек.",
+            question2: "Вопрос 2: Это мошенничество!",
+            answer2: "Это ты - мошенник! Если у вас было время прочитать до этого места, вы должны знать, что ликвидность Meteora заблокирована навсегда - это как носки, застрявшие за стиральной машиной, они никуда не денутся. Так что, здесь нет риска RUG pull. Расслабьтесь и наслаждайтесь путешествием с нами.",
+            question3: "Вопрос 3: Вы собираетесь заработать кучу денег!",
+            answer3: "Извините за разочарование, но я не на пути к тому, чтобы стать следующим магнатом носков. Платформы вроде Moonshot и Pump.fun контролируют смарт-контракт, и я не могу влиять на ограниченную в 1 миллиард токенов supply. Мой единственный потенциальный источник дохода? Ваши щедрые пожертвования SOL на этом сайте. Это как волонтерство, но с долей надежды и большим юмором.",
+            question4: "Вопрос 4: Какие проекты планируются?",
+            answer4: "Моя мечта? Быть размещенным на CEX. Но помимо этого, я хочу развивать этот сайт, созданный моими собственными руками (без критики кода, OK [смех]). Почему бы не создать игру на Telegram? Да, это очень сложно. Но, эй, кто не любит хорошее испытание? У меня много планов впереди, если вы дадите мне шанс их осуществить.",
+            question5: "Вопрос 5: Кто скрывает носки больше всех?",
+            answer5: "Без сомнения, моя жена. У неё талант раскладывать их везде. Они появляются в самых неожиданных местах: под диваном, за холодильником, в ящике для столовых приборов... Мой робот-пылесос из-за этого видит кошмары. Это настоящая охота за сокровищами каждый раз, когда она ищет пару!",
+            question6: "Вопрос 6: Чем вы занимаетесь помимо всего этого?",
+            answer6: "Много чего! Я студент магистратуры по общественному здоровью (заканчиваю в сентябре, если хотите поздравить). Я также работаю в ассоциации профессионалов здравоохранения. Я делаю видео на YouTube с уроками по криптовалюте (ищите 'Les Occaz à Séb'). Я также на Twitch, где провожу некоторые прямые трансляции, но это не очень популярно."
+        },
             ar: {
                 title: "مرحبًا بك في SocklessCoin 🧦",
                 subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
@@ -382,8 +455,21 @@
                 userRejected: "تم رفض المعاملة من قبل المستخدم.",
                 genericError: "حدث خطأ. حاول مرة أخرى.",
                 success: "شكرًا على دعمك! تمت المعاملة بنجاح مع التوقيع:",
-                faqTitle: "الأسئلة الشائعة"
-            }
+                faqTitle: "الأسئلة الشائعة",
+                additionalQuestions: "أسئلة إضافية",
+            question1: "السؤال 1: (مرحلة ما قبل الإطلاق) لماذا هناك نسبة عالية لدى الحاصلين؟",
+            answer1: "النسبة الكبيرة التي تراها لدى المالكين ناتجة عن أن الفريق يملك معظم الإمداد ليتم توزيعها تدريجياً. تخيل ذلك كمخزن للجوارب: في البداية، كل الجوارب موجودة هناك، لكن كلما استخدمتها، يخلو المخزن أكثر. كل شراء يأخذ بعض التوكنات من هذه الاحتياطيات، ويضعها في يديك... أو بالأحرى، في محفظتك.",
+            question2: "السؤال 2: هذا خدعة!",
+            answer2: "أنت الخداع! إذا كنت قد أخذت الوقت لقراءة هذا المكان، يجب أن تعرف أن سيولة Meteora مقفلة للأبد - مثل جورب عالق وراء آلة الغسيل، لن يذهب إلى أي مكان. لذا، لا يوجد خطر RUG pull هنا. استرخ واستمتع بالرحلة معنا.",
+            question3: "السؤال 3: ستكسب الكثير من المال!",
+            answer3: "آسف لخيبة الأمل، لكنني لست في طريقي لأصبح مليونير الأجوارب التالي. المنصات مثل Moonshot و Pump.fun تحتفظ بالسيطرة على العقد الذكي، ولا يمكنني الوصول إلى الإمداد المحدود بـ 1 مليار توكن. مصدر ثروتي الوحيد المحتمل؟ تبرعاتكم الكريمة بـ SOL على هذا الموقع. هذا عمل تطوعي، لكن مع قليل من الأمل وكثير من الفكاهة.",
+            question4: "السؤال 4: ما هي المشاريع المقبلة؟",
+            answer4: "حلمي؟ القائمة على CEX. لكن بعد ذلك، أريد تطوير هذا الموقع الذي صنعته بيديّ (بدون انتقاد للشيفرة، OK [ضحك]). ولماذا لا نقوم بإنشاء لعبة على Telegram؟ نعم، هذا صعب جداً. لكن، هي، من لا يحب تحدّياً جيداً؟ لدي الكثير من المشاريع في المستقبل إذا أعطيتني الفرصة لتنفيذها.",
+            question5: "السؤال 5: من يخفي الجوارب الأكثر؟",
+            answer5: "بدون شك، زوجتي. لديها موهبة في تركها في كل مكان. تعود للظهور في أماكن مفاجئة: تحت الأريكة، خلف الثلاجة، في درج الأدوات... روبوت التنظيف الخاص بي يرى كوابيس بسبب ذلك. هذا بمثابة صيد كنز حقيقي كلما بحثت عن زوج!",
+            question6: "السؤال 6: ماذا تفعل إلى جانب هذا كله؟",
+            answer6: "الكثير من الأشياء! أنا طالب في برنامج ماجستير في الصحة العامة (أنهي في سبتمبر إذا كنت تريد إرسال تهاني). أنا أيضاً موظف في جمعية مهنيي الصحة. أقوم بصنع مقاطع فيديو على YouTube مع دروس حول العملات المشفرة (ابحث عن 'Les Occaz à Séb'). أنا أيضاً على Twitch حيث أقوم ببعض البث المباشر لكنه ليس شائعاً كثيراً."
+        }
         };
 
         // Gestion des images
@@ -405,6 +491,8 @@
             }, 100);
         }
 
+        
+
         function changeLanguage(language) {
             const lang = translations[language];
             localStorage.setItem('currentLanguage', language);
@@ -417,6 +505,10 @@
             document.getElementById("donationAmount").placeholder = lang.donationPlaceholder;
             document.getElementById("sendDonationButton").textContent = lang.sendDonation;
             document.getElementById("faqTitle").textContent = lang.faqTitle || 'Frequently Asked Questions';
+            document.getElementById("additionalQuestions").textContent = lang.additionalQuestions;
+        for (let i = 1; i <= 6; i++) {
+            document.getElementById(`question${i}`).textContent = lang[`question${i}`];
+            document.getElementById(`answer${i}`).textContent = lang[`answer${i}`];
         }
 
         function openLightbox(sockId) {
@@ -434,6 +526,37 @@
             changeLanguage(defaultLanguage);
         }
 
+            // Gestion de la FAQ pour les nouvelles questions
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const answer = this.querySelector('.question-answer');
+                const isActive = this.classList.contains('active');
+                
+                // Fermer toutes les autres réponses
+                faqItems.forEach(other => {
+                    if (other !== this) {
+                        other.classList.remove('active');
+                        other.querySelector('.question-answer').style.display = 'none';
+                    }
+                });
+
+                // Changer l'état de l'élément cliqué
+                if (isActive) {
+                    this.classList.remove('active');
+                    answer.style.display = 'none';
+                } else {
+                    this.classList.add('active');
+                    answer.style.display = 'block';
+                }
+            });
+        });
+
+
+
+            
         async function sendDonation() {
             const currentLanguage = localStorage.getItem('currentLanguage') || 'en';
             const lang = translations[currentLanguage];
