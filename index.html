@@ -3,31 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate with Sock</title>
+    <title>SocklessCoin - The Sock Revolution</title>
     <style>
         body {
+            background: radial-gradient(circle, rgba(230, 230, 230, 0.7) 10%, rgba(200, 200, 200, 0.5) 40%, rgba(220, 220, 220, 0.7) 60%);
+            background-size: 50px 50px;
             font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
             text-align: center;
-            padding: 50px;
+        }
+
+        .content-box {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: auto;
+            position: relative;
         }
 
         .sock-button {
             display: inline-block;
-            background: #ff7f00; /* Couleur de la chaussette */
+            background: #ff7f00;
             border-radius: 20px;
             padding: 10px 30px;
-            position: relative;
             font-size: 1.2rem;
             color: white;
             text-decoration: none;
             cursor: pointer;
-            text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, background 0.3s ease;
         }
 
-        /* Forme de chaussette */
         .sock-button::before {
             content: '';
             position: absolute;
@@ -48,20 +58,116 @@
             transform: scale(0.9);
         }
 
-        .sock-button span {
+        #donationContent {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .donation-img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .translate-btn {
             font-size: 1.2rem;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            background: #ff7f00;
+            color: white;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+
+        .translate-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .select-language {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Donate with SocklessCoin!</h1>
-    <p>Your donations help us continue the sock revolution!</p>
+    <div class="content-box">
+        <h1 id="title">Welcome to SocklessCoin 🧦</h1>
+        <p id="subtitle">Where do lost socks go? We might have the answer...</p>
+        <button id="suspectButton" class="sock-button">Découvrez un suspect potentiel</button>
 
-    <!-- Bouton de donation Solana -->
-    <a href="solana://YOUR_SOLANA_ADDRESS_HERE" class="sock-button">
-        <span>Donate Solana</span>
-    </a>
+        <div id="donationContent">
+            <img src="bonus_image.jpg" alt="Bonus Image" class="donation-img">
+            <p id="donationText">Me soutenir dans cette guerre</p>
+            <a href="solana://YOUR_SOLANA_ADDRESS_HERE" class="sock-button">Donate Solana</a>
+        </div>
+
+        <div class="select-language">
+            <select id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="en">🇬🇧 English</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="ar">🇸🇦 العربية</option>
+            </select>
+        </div>
+
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "Welcome to SocklessCoin 🧦",
+                subtitle: "Where do lost socks go? We might have the answer...",
+                suspectBtn: "Discover a potential suspect",
+                donationText: "Support me in this war",
+                donateBtn: "Donate Solana"
+            },
+            fr: {
+                title: "Bienvenue sur SocklessCoin 🧦",
+                subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
+                suspectBtn: "Découvrez un suspect potentiel",
+                donationText: "Me soutenir dans cette guerre",
+                donateBtn: "Donate Solana"
+            },
+            zh: {
+                title: "欢迎来到 SocklessCoin 🧦",
+                subtitle: "丢失的袜子去了哪里？ 也许我们有答案...",
+                suspectBtn: "发现潜在嫌疑人",
+                donationText: "支持我在这场战争中",
+                donateBtn: "Donate Solana"
+            },
+            ru: {
+                title: "Добро пожаловать в SocklessCoin 🧦",
+                subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
+                suspectBtn: "Обнаружить возможного подозреваемого",
+                donationText: "Поддержите меня в этой войне",
+                donateBtn: "Donate Solana"
+            },
+            ar: {
+                title: "مرحبًا بك في SocklessCoin 🧦",
+                subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
+                suspectBtn: "اكتشاف مشتبه به محتمل",
+                donationText: "ادعمني في هذه الحرب",
+                donateBtn: "Donate Solana"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById("title").textContent = translations[lang].title;
+            document.getElementById("subtitle").textContent = translations[lang].subtitle;
+            document.getElementById("suspectButton").textContent = translations[lang].suspectBtn;
+            document.getElementById("donationText").textContent = translations[lang].donationText;
+            document.querySelector(".sock-button").textContent = translations[lang].donateBtn;
+        }
+
+        // Toggle the donation content on button click
+        document.getElementById("suspectButton").addEventListener("click", function() {
+            document.getElementById("donationContent").style.display = "block";
+        });
+    </script>
 
 </body>
 </html>
