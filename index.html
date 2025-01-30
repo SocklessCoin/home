@@ -14,16 +14,17 @@
 
     /* Box Shadow et bords arrondis pour la zone du contenu */
     .content-box {
-        background: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 15px;
-        padding: 2rem;
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        height: auto; /* Hauteur automatique pour plus de flexibilité */
-        justify-content: space-between; /* Aligne les deux sections à gauche et à droite */
-    }
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    height: auto;
+    justify-content: space-between;
+    color: #333; /* Ajout pour améliorer le contraste */
+}
 
     /* Zone gauche avec texte et bouton, centré à gauche */
     .content-left {
@@ -109,29 +110,25 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        .content-box {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .sock-images {
-            margin-top: 1rem;
-        }
-
-        .sock-images img {
-            width: 200px;
-        }
-
-        h1, p {
-            font-size: 1.2rem;
-            text-align: center;
-        }
-
-        select, button {
-            font-size: 0.9rem;
-            width: 80%;
-        }
+    .content-box {
+        flex-direction: column;
+        align-items: center;
     }
+    .sock-images {
+        margin-top: 1rem;
+    }
+    .sock-images img {
+        width: 100%;
+        max-width: 200px; /* Modification de la taille des images */
+    }
+    h1, p {
+        font-size: 1rem; /* Ajustement de la taille des titres pour une meilleure lisibilité */
+    }
+    select, button {
+        font-size: 0.9rem;
+        width: 80%; /* Ajustement pour les éléments interactifs */
+    }
+}
 
     /* Affichage de la version */
     .version {
