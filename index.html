@@ -200,21 +200,25 @@
         <img id="lightboxImage" src="" alt="Zoomed Image">
     </div>
 
-<!-- Module intégration du Buffer --->
+
+    
+<!-- Polyfill pour Buffer (doit être avant Solana Web3.js) -->
 <script type="module">
-      import { Buffer } from "https://cdn.skypack.dev/buffer";
-    </script>
-    <!-- Bouton de soutien avec champ de montant -->
+  import { Buffer } from "https://cdn.skypack.dev/buffer";
+</script>
+
+<!-- Chargement de Solana Web3.js -->
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+
+<!-- Module polyfill -->
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0"></script>
+
+<!-- Bouton de soutien avec champ de montant -->
 <div id="supportMessage">
     <p>S'il vous plaît, donnez-moi de la force pour que ma femme arrête de mettre ses chaussettes partout.</p>
     <input type="number" id="donationAmount" placeholder="Entrez le montant en SOL" />
     <button id="sendDonationButton">Envoyer le soutien</button>
 </div>
-<!-- Ajout du polyfill pour Buffer -->
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0"></script>
-
-<!-- Chargement de Solana Web3.js -->
-<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
 
 <script>
   // Vérifie si la bibliothèque Solana Web3 est correctement chargée
@@ -273,6 +277,7 @@
     sendDonation(donationAmount);
   });
 </script>
+
 
 
 
