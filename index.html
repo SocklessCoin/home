@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocklessCoin - The Sock Revolution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
     /* Texture de fond (style tambour de machine à laver) */
     body {
         background: radial-gradient(circle, rgba(230, 230, 230, 0.7) 10%, rgba(200, 200, 200, 0.5) 40%, rgba(220, 220, 220, 0.7) 60%);
         background-size: 50px 50px;
+        font-family: 'Montserrat', sans-serif;
     }
 
     /* Box Shadow et bords arrondis pour la zone du contenu */
@@ -20,28 +22,50 @@
         display: flex;
         flex-direction: row;
         gap: 2rem;
+        width: 90%;
+        max-width: 1200px; /* Limiter la largeur pour éviter un rectangle trop large */
+        margin: 0 auto;
     }
 
-    /* Images alignées à droite, avec largeur ajustée */
-    .sock-images {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-    }
-
+    /* Image Horizontale - Taille ajustée */
     .sock-images img {
-        width: 200px;
+        width: 300px;
         height: auto;
         border-radius: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         display: none; /* Assurez-vous que l'image soit cachée au départ */
-        opacity: 0; /* L'image sera initialement invisible */
-        transition: opacity 1s ease-in-out; /* Ajout d'une transition fluide */
+        transition: transform 0.3s ease; /* Ajout d'une transition douce */
     }
 
-    /* Assure la responsivité */
+    .sock-images img:hover {
+        transform: scale(1.05); /* Légère agrandissement au survol */
+    }
+
+    /* Amélioration du titre */
+    #title {
+        font-size: 3rem;
+        font-weight: 600;
+        color: #F36F3E;
+        margin-bottom: 1rem;
+    }
+
+    /* Bouton et sélection de langue plus grands et modernes */
+    button, select {
+        padding: 0.8rem 2rem;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        border: none;
+        background-color: #F36F3E;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+    }
+
+    button:hover, select:hover {
+        background-color: #F47F4E;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
         .content-box {
             flex-direction: column;
@@ -53,107 +77,14 @@
         }
 
         .sock-images img {
-            width: 150px;
+            width: 200px;
         }
-    }
 
-    /* Style du lien Telegram */
-    .telegram-link {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #0088cc;
-        color: white;
-        font-size: 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s, transform 0.3s;
-    }
-
-    .telegram-link:hover {
-        background-color: #006699;
-        transform: scale(1.05); /* Légère animation pour l'effet de survol */
-    }
-    
-    .telegram-link:active {
-        background-color: #005580; /* Effet lors du clic */
+        #title {
+            font-size: 2rem;
+        }
     }
 </style>
-
-    <style>
-    /* Transition fluide pour le bouton */
-    button {
-        transition: all 0.3s ease-in-out;
-    }
-
-    button:hover {
-        background-color: #f97316; /* Couleur de fond plus sombre au survol */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
-        transform: scale(1.05); /* Agrandissement léger */
-    }
-
-    /* Animation de fade-in pour le titre */
-    #title {
-        animation: fadeIn 2s ease-in-out;
-    }
-
-    /* Définir l'animation fadeIn */
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Autres améliorations esthétiques */
-    .content-box {
-        background: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 15px;
-        padding: 2rem;
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        margin-top: 20px;
-        transition: box-shadow 0.3s ease-in-out; /* Transition de l'ombre */
-    }
-
-    .content-box:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
-    }
-</style>
-
-
-<script>
-    // Lost Socks Images
-    const socks = ["sockImage1", "sockImage2", "sockImage3"];
-    
-    function showSock() {
-        // Cacher toutes les images
-        socks.forEach(sock => {
-            const sockElement = document.getElementById(sock);
-            sockElement.style.display = "none";
-            sockElement.style.opacity = "0"; // Réinitialiser l'opacité à 0
-        });
-
-        // Afficher une image aléatoire
-        const randomSock = socks[Math.floor(Math.random() * socks.length)];
-        const randomSockElement = document.getElementById(randomSock);
-        randomSockElement.style.display = "block";
-        
-        // Ajouter un délai pour permettre à l'image de devenir visible
-        setTimeout(() => {
-            randomSockElement.style.opacity = "1"; // Rendre l'image visible avec l'animation
-        }, 10); // Légèrement après pour que la transition soit appliquée
-    }
-</script>
-
 </head>
 <body class="text-gray-900 flex flex-col items-center justify-center min-h-screen text-center">
 
@@ -161,17 +92,13 @@
     <div class="content-box">
         <!-- Zone gauche avec texte, bouton -->
         <div class="flex flex-col items-start w-full">
-            <h1 class="text-3xl font-bold text-orange-600" id="title">Welcome to SocklessCoin 🧦</h1>
-            <p class="text-gray-600 mt-3" id="subtitle">Where do lost socks go? We might have the answer...</p>
+            <h1 id="title">Welcome to SocklessCoin 🧦</h1>
+            <p id="subtitle">Where do lost socks go? We might have the answer...</p>
 
-            <button onclick="showSock()" 
-                class="mt-5 px-5 py-3 text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition">
-                Find a Sock
-            </button>
+            <button onclick="showSock()">Find a Sock</button>
 
             <div class="mt-5">
-                <select id="languageSelect" class="px-3 py-2 rounded-md border bg-gray-200 text-gray-900 transition"
-                    onchange="changeLanguage(this.value)">
+                <select id="languageSelect" onchange="changeLanguage(this.value)">
                     <option value="en">🇬🇧 English</option>
                     <option value="fr">🇫🇷 Français</option>
                     <option value="zh">🇨🇳 中文</option>
@@ -190,9 +117,63 @@
     </div>
 
     <!-- Lien vers le bot Telegram -->
-    <a href="https://t.me/YOUR_BOT" target="_blank" class="telegram-link">
+    <a href="https://t.me/YOUR_BOT" target="_blank" class="mt-5 block text-blue-500 hover:text-blue-700 underline">
         Try the Telegram Bot
     </a>
 
+    <script>
+        // Lost Socks Images
+        const socks = ["sockImage1", "sockImage2", "sockImage3"];
+        
+        function showSock() {
+            socks.forEach(sock => {
+                document.getElementById(sock).style.display = "none";
+            });
+
+            const randomSock = socks[Math.floor(Math.random() * socks.length)];
+            document.getElementById(randomSock).style.display = "block";
+        }
+
+        // Translations
+        const translations = {
+            en: {
+                title: "Welcome to SocklessCoin 🧦",
+                subtitle: "Where do lost socks go? We might have the answer...",
+                btnFind: "Find a Sock",
+                btnBot: "Try the Telegram Bot"
+            },
+            fr: {
+                title: "Bienvenue sur SocklessCoin 🧦",
+                subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
+                btnFind: "Trouver une chaussette",
+                btnBot: "Tester le bot Telegram"
+            },
+            zh: {
+                title: "欢迎来到 SocklessCoin 🧦",
+                subtitle: "丢失的袜子去了哪里？ 也许我们有答案...",
+                btnFind: "找一只袜子",
+                btnBot: "尝试 Telegram 机器人"
+            },
+            ru: {
+                title: "Добро пожаловать в SocklessCoin 🧦",
+                subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
+                btnFind: "Найти носок",
+                btnBot: "Попробовать бота в Telegram"
+            },
+            ar: {
+                title: "مرحبًا بك في SocklessCoin 🧦",
+                subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
+                btnFind: "ابحث عن جورب",
+                btnBot: "جرب بوت تليجرام"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById("title").textContent = translations[lang].title;
+            document.getElementById("subtitle").textContent = translations[lang].subtitle;
+            document.querySelector("button").textContent = translations[lang].btnFind;
+            document.querySelector("a").textContent = translations[lang].btnBot;
+        }
+    </script>
 </body>
 </html>
