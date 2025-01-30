@@ -473,63 +473,147 @@
         };
 
         // Gestion des images
-        const socks = ["sockImage1", "sockImage2", "sockImage3"];
+        // Gestion des images
+    const socks = ["sockImage1", "sockImage2", "sockImage3"];
 
-        function showSock() {
-            socks.forEach(sock => {
-                const img = document.getElementById(sock);
-                img.style.display = "none";
-                img.style.opacity = "0";
-            });
+    function showSock() {
+        socks.forEach(sock => {
+            const img = document.getElementById(sock);
+            img.style.display = "none";
+            img.style.opacity = "0";
+        });
 
-            const randomSock = socks[Math.floor(Math.random() * socks.length)];
-            const selectedImg = document.getElementById(randomSock);
-            
-            selectedImg.style.display = "block";
-            setTimeout(() => {
-                selectedImg.style.opacity = "1";
-            }, 100);
-        }
-
+        const randomSock = socks[Math.floor(Math.random() * socks.length)];
+        const selectedImg = document.getElementById(randomSock);
         
+        selectedImg.style.display = "block";
+        setTimeout(() => {
+            selectedImg.style.opacity = "1";
+        }, 100);
+    }
 
-        function changeLanguage(language) {
-            const lang = translations[language];
-            localStorage.setItem('currentLanguage', language);
-            
-            document.getElementById("title").textContent = lang.title;
-            document.getElementById("subtitle").textContent = lang.subtitle;
-            document.getElementById("findButton").textContent = lang.findButton;
-            document.getElementById("telegramButton").textContent = lang.telegramButton;
-            document.getElementById("donationText").textContent = lang.donationText;
-            document.getElementById("donationAmount").placeholder = lang.donationPlaceholder;
-            document.getElementById("sendDonationButton").textContent = lang.sendDonation;
-            document.getElementById("faqTitle").textContent = lang.faqTitle || 'Frequently Asked Questions';
-            document.getElementById("additionalQuestions").textContent = lang.additionalQuestions;
+    function changeLanguage(language) {
+        const lang = translations[language];
+        localStorage.setItem('currentLanguage', language);
+        
+        document.getElementById("title").textContent = lang.title;
+        document.getElementById("subtitle").textContent = lang.subtitle;
+        document.getElementById("findButton").textContent = lang.findButton;
+        document.getElementById("telegramButton").textContent = lang.telegramButton;
+        document.getElementById("donationText").textContent = lang.donationText;
+        document.getElementById("donationAmount").placeholder = lang.donationPlaceholder;
+        document.getElementById("sendDonationButton").textContent = lang.sendDonation;
+        document.getElementById("faqTitle").textContent = lang.faqTitle || 'Frequently Asked Questions';
+        document.getElementById("additionalQuestions").textContent = lang.additionalQuestions;
         for (let i = 1; i <= 6; i++) {
             document.getElementById(`question${i}`).textContent = lang[`question${i}`];
             document.getElementById(`answer${i}`).textContent = lang[`answer${i}`];
         }
+    }
 
-        function openLightbox(sockId) {
-            const imageSrc = document.getElementById(sockId).src;
-            document.getElementById("lightboxImage").src = imageSrc;
-            document.getElementById("lightbox").style.display = "flex";
+    function openLightbox(sockId) {
+        const imageSrc = document.getElementById(sockId).src;
+        document.getElementById("lightboxImage").src = imageSrc;
+        document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function closeLightbox() {
+        document.getElementById("lightbox").style.display = "none";
+    }
+
+    function initLanguage() {
+        const defaultLanguage = localStorage.getItem('currentLanguage') || 'en';
+        changeLanguage(defaultLanguage);
+    }
+
+    async function sendDonation() {
+        const currentLanguage = localStorage.getItem('currentLanguage') || 'en';
+        const lang = translations[currentLanguage];
+        
+        const amount = parseFloat(document.getElementById('donationAmount').value);
+        console.log("Montant de la donation :", amount);
+
+        if (!amount || isNaN(amount) || amount <= 0) {
+            alert(lang.invalidAmount);
+            return;
         }
 
-        function closeLightbox() {
-            document.getElementById("lightbox").style.display = "none";
+        if (!window.solana) {
+            alert('Please install a Solana wallet like Phantom or Solflare to make donations.');
+            return;
         }
 
-        function initLanguage() {
-            const defaultLanguage = localStorage.getItem('currentLanguage') || 'en';
-            changeLanguage(defaultLanguage);
+        let fromPubKey = window.solana.publicKey;
+        if (!fromPubKey) {
+            alert(lang.connectWallet);
+            try {
+                await window.solana.connect();
+                fromPubKey = window.solana.publicKey;
+            } catch (err) {
+                console.error('Erreur lors de l\'envoi de la donation : ', err);
+                if (err.message.includes('insufficient funds')) {
+                    alert(lang.insufficientFunds);
+                } else if (err.message.includes('User rejected the request')) {
+                    alert(lang.userRejected);
+                } else {
+                    alert(lang.genericError);
+                }
+                return;
+            }
         }
 
-            // Gestion de la FAQ pour les nouvelles questions
-    document.addEventListener('DOMContentLoaded', function() {
+        try {
+            const connection = new solanaWeb3.Connection("https://warmhearted-small-morning.solana-mainnet.quiknode.pro/ae353180e6fec725c670a0ef82cd9e1bcd64081b", 'confirmed');
+            const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc"); // Remplacez par votre adresse réelle
+
+            let { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+
+            const transaction = new solanaWeb3.Transaction({
+                recentBlockhash: blockhash,
+                feePayer: fromPubKey
+            }).add(
+                solanaWeb3.SystemProgram.transfer({
+                    fromPubkey: fromPubKey,
+                    toPubkey: recipient,
+                    lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
+                })
+            );
+
+            const signature = await window.solana.signAndSendTransaction(transaction);
+            console.log("Transaction signature:", signature);
+            alert(lang.success + signature);
+
+        } catch (err) {
+            console.error('Erreur lors de l\'envoi de la donation : ', err);
+            if (err.message.includes('insufficient funds')) {
+                alert(lang.insufficientFunds);
+            } else {
+                alert(lang.genericError);
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof solanaWeb3 === 'undefined' || typeof Buffer === 'undefined') {
+            console.error('Solana Web3 ou Buffer non chargé.');
+        } else {
+            console.log('Solana Web3.js et Buffer chargés avec succès.');
+        }
+        initLanguage();
+
+        // Événement pour le bouton de donation
+        document.getElementById("sendDonationButton").addEventListener("click", async function() {
+            await sendDonation();
+        });
+
+        // Événement pour le formulaire de donation
+        document.getElementById("donationForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            await sendDonation();
+        });
+
+        // Gestion de la FAQ
         const faqItems = document.querySelectorAll('.faq-item');
-
         faqItems.forEach(item => {
             item.addEventListener('click', function() {
                 const answer = this.querySelector('.question-answer');
@@ -554,122 +638,9 @@
             });
         });
 
-
-
-            
-        async function sendDonation() {
-            const currentLanguage = localStorage.getItem('currentLanguage') || 'en';
-            const lang = translations[currentLanguage];
-            
-            const amount = parseFloat(document.getElementById('donationAmount').value);
-            console.log("Montant de la donation :", amount);
-
-            if (!amount || isNaN(amount) || amount <= 0) {
-                alert(lang.invalidAmount);
-                return;
-            }
-
-            if (!window.solana) {
-                alert('Please install a Solana wallet like Phantom or Solflare to make donations.');
-                return;
-            }
-
-            let fromPubKey = window.solana.publicKey;
-            if (!fromPubKey) {
-                alert(lang.connectWallet);
-                try {
-                    await window.solana.connect();
-                    fromPubKey = window.solana.publicKey;
-                } catch (err) {
-                    console.error('Erreur lors de l\'envoi de la donation : ', err);
-                    if (err.message.includes('insufficient funds')) {
-                        alert(lang.insufficientFunds);
-                    } else if (err.message.includes('User rejected the request')) {
-                        alert(lang.userRejected);
-                    } else {
-                        alert(lang.genericError);
-                    }
-                    return;
-                }
-            }
-
-            try {
-                                const connection = new solanaWeb3.Connection("https://warmhearted-small-morning.solana-mainnet.quiknode.pro/ae353180e6fec725c670a0ef82cd9e1bcd64081b", 'confirmed');
-                const recipient = new solanaWeb3.PublicKey("EWJDYFnkQqLNEUfA3QWiQEhsQ8a3wPHF8gZDczuqKkdc"); // Remplacez par votre adresse réelle
-
-                let { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
-
-                const transaction = new solanaWeb3.Transaction({
-                    recentBlockhash: blockhash,
-                    feePayer: fromPubKey
-                }).add(
-                    solanaWeb3.SystemProgram.transfer({
-                        fromPubkey: fromPubKey,
-                        toPubkey: recipient,
-                        lamports: solanaWeb3.LAMPORTS_PER_SOL * amount
-                    })
-                );
-
-                const signature = await window.solana.signAndSendTransaction(transaction);
-                console.log("Transaction signature:", signature);
-                alert(lang.success + signature);
-
-            } catch (err) {
-                console.error('Erreur lors de l\'envoi de la donation : ', err);
-                if (err.message.includes('insufficient funds')) {
-                    alert(lang.insufficientFunds);
-                } else {
-                    alert(lang.genericError);
-                }
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            if (typeof solanaWeb3 === 'undefined' || typeof Buffer === 'undefined') {
-                console.error('Solana Web3 ou Buffer non chargé.');
-            } else {
-                console.log('Solana Web3.js et Buffer chargés avec succès.');
-            }
-            initLanguage();
-
-            // Événement pour le bouton de donation
-            document.getElementById("sendDonationButton").addEventListener("click", async function() {
-                await sendDonation();
-            });
-
-            // Événement pour le formulaire de donation
-            document.getElementById("donationForm").addEventListener("submit", async function(e) {
-                e.preventDefault();
-                await sendDonation();
-            });
-
-            // Gestion de la FAQ
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const answer = this.querySelector('.question-answer');
-                    const isActive = this.classList.contains('active');
-                    
-                    faqItems.forEach(other => {
-                        if (other !== this) {
-                            other.classList.remove('active');
-                            other.querySelector('.question-answer').style.display = 'none';
-                        }
-                    });
-
-                    if (isActive) {
-                        this.classList.remove('active');
-                        answer.style.display = 'none';
-                    } else {
-                        this.classList.add('active');
-                        answer.style.display = 'block';
-                    }
-                });
-            });
-
-            // Afficher une chaussette au chargement de la page
-            showSock();
-        });
+        // Afficher une chaussette au chargement de la page
+        showSock();
+    });
     </script>
 </body>
 </html>
