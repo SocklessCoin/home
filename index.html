@@ -37,6 +37,8 @@
         border-radius: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         display: none; /* Assurez-vous que l'image soit cachée au départ */
+        opacity: 0; /* L'image sera initialement invisible */
+        transition: opacity 1s ease-in-out; /* Ajout d'une transition fluide */
     }
 
     /* Assure la responsivité */
@@ -54,7 +56,32 @@
             width: 150px;
         }
     }
-    </style>
+</style>
+
+<script>
+    // Lost Socks Images
+    const socks = ["sockImage1", "sockImage2", "sockImage3"];
+    
+    function showSock() {
+        // Cacher toutes les images
+        socks.forEach(sock => {
+            const sockElement = document.getElementById(sock);
+            sockElement.style.display = "none";
+            sockElement.style.opacity = "0"; // Réinitialiser l'opacité à 0
+        });
+
+        // Afficher une image aléatoire
+        const randomSock = socks[Math.floor(Math.random() * socks.length)];
+        const randomSockElement = document.getElementById(randomSock);
+        randomSockElement.style.display = "block";
+        
+        // Ajouter un délai pour permettre à l'image de devenir visible
+        setTimeout(() => {
+            randomSockElement.style.opacity = "1"; // Rendre l'image visible avec l'animation
+        }, 10); // Légèrement après pour que la transition soit appliquée
+    }
+</script>
+
 </head>
 <body class="text-gray-900 flex flex-col items-center justify-center min-h-screen text-center">
 
@@ -96,61 +123,5 @@
         Try the Telegram Bot
     </a>
 
-    <script>
-        // Lost Socks Images
-        const socks = ["sockImage1", "sockImage2", "sockImage3"];
-        
-        function showSock() {
-            // Cacher toutes les images
-            socks.forEach(sock => {
-                document.getElementById(sock).style.display = "none";
-            });
-
-            // Afficher une image aléatoire
-            const randomSock = socks[Math.floor(Math.random() * socks.length)];
-            document.getElementById(randomSock).style.display = "block";
-        }
-
-        // Translations
-        const translations = {
-            en: {
-                title: "Welcome to SocklessCoin 🧦",
-                subtitle: "Where do lost socks go? We might have the answer...",
-                btnFind: "Find a Sock",
-                btnBot: "Try the Telegram Bot"
-            },
-            fr: {
-                title: "Bienvenue sur SocklessCoin 🧦",
-                subtitle: "Où vont les chaussettes perdues ? Nous avons peut-être une réponse...",
-                btnFind: "Trouver une chaussette",
-                btnBot: "Tester le bot Telegram"
-            },
-            zh: {
-                title: "欢迎来到 SocklessCoin 🧦",
-                subtitle: "丢失的袜子去了哪里？ 也许我们有答案...",
-                btnFind: "找一只袜子",
-                btnBot: "尝试 Telegram 机器人"
-            },
-            ru: {
-                title: "Добро пожаловать в SocklessCoin 🧦",
-                subtitle: "Куда пропадают потерянные носки? Возможно, у нас есть ответ...",
-                btnFind: "Найти носок",
-                btnBot: "Попробовать бота в Telegram"
-            },
-            ar: {
-                title: "مرحبًا بك في SocklessCoin 🧦",
-                subtitle: "أين تذهب الجوارب المفقودة؟ ربما لدينا الإجابة...",
-                btnFind: "ابحث عن جورب",
-                btnBot: "جرب بوت تليجرام"
-            }
-        };
-
-        function changeLanguage(lang) {
-            document.getElementById("title").textContent = translations[lang].title;
-            document.getElementById("subtitle").textContent = translations[lang].subtitle;
-            document.querySelector("button").textContent = translations[lang].btnFind;
-            document.querySelector("a").textContent = translations[lang].btnBot;
-        }
-    </script>
 </body>
 </html>
