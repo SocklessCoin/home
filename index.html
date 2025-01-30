@@ -5,53 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SocklessCoin - The Sock Revolution</title>
     <style>
-        /* Texture de fond (style tambour de machine à laver) */
-        body {
-            background: radial-gradient(circle, rgba(230, 230, 230, 0.8) 10%, rgba(180, 180, 180, 0.6) 40%, rgba(220, 220, 220, 0.8) 60%);
-            background-size: 50px 50px;
-            font-family: Arial, sans-serif;
-        }
+    /* Texture de fond (style tambour de machine à laver) */
+    body {
+        background: radial-gradient(circle, rgba(230, 230, 230, 0.7) 10%, rgba(200, 200, 200, 0.5) 40%, rgba(220, 220, 220, 0.7) 60%);
+        background-size: 50px 50px;
+    }
 
-        /* Box Shadow et bords arrondis pour la zone du contenu */
+    /* Box Shadow et bords arrondis pour la zone du contenu */
+    .content-box {
+        background: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    /* Images alignées à droite, avec largeur ajustée */
+    .sock-images {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .sock-images img {
+        width: 200px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Assure la responsivité */
+    @media (max-width: 768px) {
         .content-box {
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: row;
-            gap: 2rem;
+            flex-direction: column;
             align-items: center;
         }
 
-        /* Images alignées à droite, avec largeur ajustée */
         .sock-images {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-top: 1rem;
         }
 
         .sock-images img {
-            width: 200px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
+            width: 150px;
         }
+    }
+</style>
 
-        /* Assure la responsivité */
-        @media (max-width: 768px) {
-            .content-box {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .sock-images img {
-                width: 150px;
-            }
-        }
-    </style>
 </head>
 <body class="text-gray-900 flex flex-col items-center justify-center min-h-screen text-center">
 
