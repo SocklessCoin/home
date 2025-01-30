@@ -524,70 +524,62 @@
         initLanguage();
 
         // Modification de l'événement de clic pour le bouton de donation
-        document.getElementById("sendDonationButton").addEventListener("click", async function() {
-            await sendDonation();
-        });
-
-// Ajout de l'événement pour le formulaire
-document.getElementById("donationForm").addEventListener("submit", async function(e) {
-    e.preventDefault(); // Empêcher le rechargement de la page
-    await sendDonation();
-});
+         document.getElementById("sendDonationButton").addEventListener("click", async function() {
+        await sendDonation();
     });
 
-// Ajout du JavaScript pour la FAQ
-document.addEventListener('DOMContentLoaded', function() {
-    const faqItems = document.querySelectorAll('.faq-item');
+    document.getElementById("donationForm").addEventListener("submit", async function(e) {
+        e.preventDefault(); // Empêcher le rechargement de la page
+        await sendDonation();
+    });
 
-    faqItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const answer = this.querySelector('.question-answer');
-            const isActive = this.classList.contains('active');
-            
-            // Fermer toutes les autres réponses
-            faqItems.forEach(other => {
-                if (other !== this) {
-                    other.classList.remove('active');
-                    other.querySelector('.question-answer').style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const answer = this.querySelector('.question-answer');
+                const isActive = this.classList.contains('active');
+                
+                // Fermer toutes les autres réponses
+                faqItems.forEach(other => {
+                    if (other !== this) {
+                        other.classList.remove('active');
+                        other.querySelector('.question-answer').style.display = 'none';
+                    }
+                });
+
+                // Changer l'état de l'élément cliqué
+                if (isActive) {
+                    this.classList.remove('active');
+                    answer.style.display = 'none';
+                } else {
+                    this.classList.add('active');
+                    answer.style.display = 'block';
                 }
             });
-
-            // Changer l'état de l'élément cliqué
-            if (isActive) {
-                this.classList.remove('active');
-                answer.style.display = 'none';
-            } else {
-                this.classList.add('active');
-                answer.style.display = 'block';
-            }
         });
+
+        // Initialisation du langage
+        initLanguage();
+
+        // Assurez-vous que showSock est appelé
+        showSock();
     });
 
-    // Traduction des titres de la FAQ
-    changeLanguage(localStorage.getItem('currentLanguage') || 'en');
-});
-
-// Mise à jour de la fonction changeLanguage pour inclure la FAQ
-function changeLanguage(language) {
-    const lang = translations[language];
-    // ... (traductions existantes)
-    document.getElementById("faqTitle").textContent = lang.faqTitle || 'Frequently Asked Questions';
-    // Assurez-vous que chaque question et réponse est traduite dans l'objet translations
-}
-
-       const translations = {
-    // ... (vos traductions existantes)
-    en: {
-        // ... (autres traductions)
-        faqTitle: "Frequently Asked Questions"
-    },
-    fr: {
-        // ... (autres traductions)
-        faqTitle: "Questions Fréquemment Posées"
-    },
-    // Ajoutez les traductions pour les autres langues ici
-}; 
+    function changeLanguage(language) {
+        const lang = translations[language];
+        localStorage.setItem('currentLanguage', language);
         
+        document.getElementById("title").textContent = lang.title;
+        document.getElementById("subtitle").textContent = lang.subtitle;
+        document.getElementById("findButton").textContent = lang.findButton;
+        document.getElementById("telegramButton").textContent = lang.telegramButton;
+        document.getElementById("donationText").textContent = lang.donationText;
+        document.getElementById("donationAmount").placeholder = lang.donationPlaceholder;
+        document.getElementById("sendDonationButton").textContent = lang.sendDonation;
+        document.getElementById("faqTitle").textContent = lang.faqTitle || 'Frequently Asked Questions';
+    }
 </script>
 
     
