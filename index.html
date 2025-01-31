@@ -183,67 +183,59 @@
             text-align: center;
         }
 
-        .faq-item {
-            margin: 10px 0;
-            text-align: left;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .faq-icon {
-            width: 30px;
-            height: 30px;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
-        .question-answer {
-            display: none;
-            margin-left: 40px;
-        }
-
-        .question-answer h3 {
-            margin-bottom: 5px;
-            font-size: 1.1em;
-        }
-
-        .question-answer p {
-    font-size: 0.9em;
-    color: #666;
-    text-align: left; /* Ajoutez cette ligne */
+        .faq-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-        /* Animation pour le déploiement */
-        .faq-item.active .question-answer {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
+.faq-item {
+    width: calc(33% - 20px); /* Ajustez selon votre besoin */
+    margin: 10px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+.faq-icon {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
 
-        @media (max-width: 768px) {
-            .content-box {
-                flex-direction: column;
-                align-items: center;
-            }
-            .sock-images {
-                margin-top: 1rem;
-            }
-            .sock-images img {
-                width: 100%;
-                max-width: 200px;
-            }
-            h1, p {
-                font-size: 1rem;
-            }
-            select, button {
-                font-size: 0.9rem;
-                width: 80%;
-            }
-        }
+.faq-item h3 {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.question-answer {
+    display: none; /* Cache les réponses par défaut */
+    margin-top: 10px;
+    text-align: left; /* Ajuste le texte des réponses à gauche */
+}
+
+.question-answer p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Animation pour le déploiement */
+.faq-item.active .question-answer {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .faq-item {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -281,46 +273,48 @@
     <!-- Rectangle de FAQ -->
     <div class="faq-box">
     <h2 id="additionalQuestions">Questions supplémentaires</h2>
-    <div class="faq-item">
-        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-        <div class="question-answer">
+    <div class="faq-items">
+        <div class="faq-item">
+            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
             <h3 id="question1">Question 1: (Étape prélancement) Pourquoi il y a un gros pourcentage dans les holders ?</h3>
-            <p id="answer1">Le gros pourcentage que vous voyez dans les holders, c'est parce que la majorité de la supply est détenue par l'équipe pour être distribuée progressivement. Pensez-y comme à une réserve de chaussettes : au début, elles sont toutes dans le tiroir, mais plus vous les portez, plus le tiroir se vide. Chaque achat fait sortir un peu plus de tokens de cette réserve, les mettant entre vos mains... ou plutôt, dans votre wallet.</p>
+            <div class="question-answer">
+                <p id="answer1">Le gros pourcentage que vous voyez dans les holders, c'est parce que la majorité de la supply est détenue par l'équipe pour être distribuée progressivement. Pensez-y comme à une réserve de chaussettes : au début, elles sont toutes dans le tiroir, mais plus vous les portez, plus le tiroir se vide. Chaque achat fait sortir un peu plus de tokens de cette réserve, les mettant entre vos mains... ou plutôt, dans votre wallet.</p>
+            </div>
         </div>
-    </div>
-    <div class="faq-item">
-        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-        <div class="question-answer">
+        <div class="faq-item">
+            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
             <h3 id="question2">Question 2: C'est un scam !</h3>
-            <p id="answer2">C'est toi le scam ! Si vous avez pris le temps de lire jusqu'ici, vous devriez savoir que la liquidité de Meteora est verrouillée à vie - c'est comme une chaussette coincée derrière la machine à laver, elle n'ira nulle part. Donc, pas de risque de RUG pull ici. Détendez-vous et profitez du voyage avec nous.</p>
+            <div class="question-answer">
+                <p id="answer2">C'est toi le scam ! Si vous avez pris le temps de lire jusqu'ici, vous devriez savoir que la liquidité de Meteora est verrouillée à vie - c'est comme une chaussette coincée derrière la machine à laver, elle n'ira nulle part. Donc, pas de risque de RUG pull ici. Détendez-vous et profitez du voyage avec nous.</p>
+            </div>
         </div>
-    </div>
-    <div class="faq-item">
-        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-        <div class="question-answer">
+        <div class="faq-item">
+            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
             <h3 id="question3">Question 3: Tu vas gagner plein d'argent !</h3>
-            <p id="answer3">Désolé de décevoir, mais je ne suis pas en route pour devenir le prochain magnat des chaussettes. Les plateformes comme Moonshot et Pump.fun gardent le contrôle du contrat intelligent, et je ne peux pas toucher à la supply limitée à 1 milliard de tokens. Mon unique source de richesse potentielle ? Vos cadeaux de SOL généreux sur ce site. C'est du bénévolat, mais avec un peu d'espoir et beaucoup d'humour.</p>
+            <div class="question-answer">
+                <p id="answer3">Désolé de décevoir, mais je ne suis pas en route pour devenir le prochain magnat des chaussettes. Les plateformes comme Moonshot et Pump.fun gardent le contrôle du contrat intelligent, et je ne peux pas toucher à la supply limitée à 1 milliard de tokens. Mon unique source de richesse potentielle ? Vos cadeaux de SOL généreux sur ce site. C'est du bénévolat, mais avec un peu d'espoir et beaucoup d'humour.</p>
+            </div>
         </div>
-    </div>
-    <div class="faq-item">
-        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-        <div class="question-answer">
+        <div class="faq-item">
+            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
             <h3 id="question4">Question 4: Quels sont les projets ensuite ?</h3>
-            <p id="answer4">Mon rêve ? Être listé sur un CEX. Mais au-delà de ça, j'ai envie de développer ce site conçu avec mes petites mains (pas de critique de mon code OK [lol]). Et pourquoi pas créer un jeu sur Telegram ? Oui, c'est très compliqué. Mais hey, qui n'aime pas un bon défi ? Plein de projets en perspective, si vous me donnez la chance de les réaliser.</p>
+            <div class="question-answer">
+                <p id="answer4">Mon rêve ? Être listé sur un CEX. Mais au-delà de ça, j'ai envie de développer ce site conçu avec mes petites mains (pas de critique de mon code OK [lol]). Et pourquoi pas créer un jeu sur Telegram ? Oui, c'est très compliqué. Mais hey, qui n'aime pas un bon défi ? Plein de projets en perspective, si vous me donnez la chance de les réaliser.</p>
+            </div>
         </div>
-    </div>
-    <div class="faq-item">
-        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-        <div class="question-answer">
+        <div class="faq-item">
+            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
             <h3 id="question5">Question 5: Qui cachent les chaussettes le plus ?</h3>
-            <p id="answer5">Sans aucun doute, ma femme. Elle a le don de les mettre partout. Elles réapparaissent dans les endroits les plus inattendus : sous le canapé, derrière le frigo, dans le tiroir à couverts... Mon robot aspirateur en fait des cauchemars. C'est une véritable chasse au trésor à chaque fois qu'elle cherche une paire !</p>
+            <div class="question-answer">
+                <p id="answer5">Sans aucun doute, ma femme. Elle a le don de les mettre partout. Elles réapparaissent dans les endroits les plus inattendus : sous le canapé, derrière le frigo, dans le tiroir à couverts... Mon robot aspirateur en fait des cauchemars. C'est une véritable chasse au trésor à chaque fois qu'elle cherche une paire !</p>
+            </div>
         </div>
-    </div>
-    <div class="faq-item">
-        <img src="icone.png" alt="FAQ Icon" class="faq-icon">
-        <div class="question-answer">
+        <div class="faq-item">
+            <img src="icone.png" alt="FAQ Icon" class="faq-icon">
             <h3 id="question6">Question 6 : Tu fais quoi à côté de tout ça ?</h3>
-            <p id="answer6">Plein de choses ! Je suis étudiant dans un Master en Santé publique (je finis en septembre si vous voulez m'envoyer des félicitations). Je suis également salarié dans une association de professionnels de santé. Je fais des vidéos sur Youtube avec des tutos sur la crypto (cherchez "Les Occaz à Séb"). Je suis également sur Twitch où je fais quelques lives mais c'est pas très populaire.</p>
+            <div class="question-answer">
+                <p id="answer6">Plein de choses ! Je suis étudiant dans un Master en Santé publique (je finis en septembre si vous voulez m'envoyer des félicitations). Je suis également salarié dans une association de professionnels de santé. Je fais des vidéos sur Youtube avec des tutos sur la crypto (cherchez "Les Occaz à Séb"). Je suis également sur Twitch où je fais quelques lives mais c'est pas très populaire.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -671,30 +665,30 @@
     });
 
     // Gestion de la FAQ
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const answer = this.querySelector('.question-answer');
-            const isActive = this.classList.contains('active');
-            
-            // Fermer toutes les autres réponses
-            faqItems.forEach(other => {
-                if (other !== this) {
-                    other.classList.remove('active');
-                    other.querySelector('.question-answer').style.display = 'none';
-                }
-            });
-
-            // Changer l'état de l'élément cliqué
-            if (isActive) {
-                this.classList.remove('active');
-                answer.style.display = 'none';
-            } else {
-                this.classList.add('active');
-                answer.style.display = 'block';
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+    item.addEventListener('click', function() {
+        const answer = this.querySelector('.question-answer');
+        const isActive = this.classList.contains('active');
+        
+        // Fermer toutes les autres réponses
+        faqItems.forEach(other => {
+            if (other !== this) {
+                other.classList.remove('active');
+                other.querySelector('.question-answer').style.display = 'none';
             }
         });
+
+        // Changer l'état de l'élément cliqué
+        if (isActive) {
+            this.classList.remove('active');
+            answer.style.display = 'none';
+        } else {
+            this.classList.add('active');
+            answer.style.display = 'block';
+        }
     });
+});
 
     // Afficher une chaussette au chargement de la page
     // showSock();
